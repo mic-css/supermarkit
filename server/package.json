@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "NODE_ENV=production nodemon ./bin/www",
-    "test": "NODE_ENV=development nodemon ./bin/www",
+    "test": "NODE_ENV=development nodemon ./bin/www"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
@@ -13,6 +13,7 @@
     "express": "~4.13.1",
     "jade": "~1.11.0",
     "mongodb": "^2.1.10",
+    "mongoose": "^4.4.8",
     "morgan": "~1.6.1",
     "serve-favicon": "~2.3.0"
   }
