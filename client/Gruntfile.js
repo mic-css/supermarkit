@@ -456,9 +456,27 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
+    },
+    
+    protractor: {
+      options: {
+        keepAlive: true,
+        configFile: "protractor.conf.js"
+      },
+      run: {}
     }
-  });
+});
 
+
+
+  grunt.registerTask('test', [
+    'clean:server',
+    'concurrent:test',
+    'autoprefixer',
+    'connect:test',
+    'karma',
+    'protractor:run'
+  ]);
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
     if (target === 'dist') {
