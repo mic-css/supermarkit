@@ -1,1 +1,5 @@
-markpad.wiki
+/**/node_modules
+/server/dist
+/client/.tmp
+/client/.sass-cache
+/client/bower_components
