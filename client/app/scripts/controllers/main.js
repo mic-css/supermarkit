@@ -8,5 +8,7 @@
         'AngularJS',
         'Karma'
       ];
+
+      this.hello = 'Hello world';
     });
 }());
