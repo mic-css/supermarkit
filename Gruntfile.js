@@ -1,7 +1,7 @@
 'use strict';
 
 var path = require('path');
-​
+
 module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -45,15 +45,29 @@ module.exports = function(grunt) {
           command: 'webdriver-manager start'
         }
       }
+    },
+    sass: {
+      dist: {
+        files: {
+          'public/stylesheets/css/main.css': 'public/stylesheets/sass/main.scss'
+        }
+      }
+    },
+    watch: {
+      css: {
+        files: '**/*.scss',
+        tasks: ['sass']
+      }
     }
   });
-​
+
   grunt.loadNpmTasks('grunt-mongo-bin');
+  grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-express');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-protractor-runner');
   grunt.loadNpmTasks('grunt-protractor-webdriver');
+  grunt.registerTask('default', ['watch']);
   grunt.registerTask('e2e', ['express:test', 'protractor_webdriver', 'protractor']);
-​
 };

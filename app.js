@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 var mongoose = require('mongoose');
 // var doc = require('./app/models/notes.js')
-var indexRouter = require('./app/routes/indexRouter')
+var indexRouter = require('./app/routes/indexRouter');
 
 var app = express();
 
@@ -19,6 +19,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/public')));
 
 // routing config
+
 app.use('/', indexRouter);
 
 // error handlers
