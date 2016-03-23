@@ -30,6 +30,17 @@ Remember to run `npm install` to install or update any package dependencies. The
 Navigate to the `server/` directory and run `npm run dev` for development. This will serve the development environment to `localhost:3000`.
 To build and serve the production environment, run `grunt --force` from the `client/` directory for building and `npm start` from the `server/` directory.
 
+#### Database
+
+The database is run using MongoDB.  Please ensure you have MongoDB installed before continuing.
+Installation instructions may be found at docs.mongodb.org/manual/installation or running `brew install mongodb` if you use Brew Doctor.
+The database files are gitignored to avoid adding stored data to the repo.  You will need to install your own database locally.
+To do so run the following in your command line:
+* `mkdir -p data/db && mkdir data/logs`.
+* `mongod --dbpath data/db/ --logpath data/logs/mongodb.log --logappend`
+This second command will need to be run everytime before connecting node to the database for this project, so you may wish to alias it.
+It will ensure the project database is used by node and that `mongod` server logs are added to the log file in the logs directory.
+
 ### Testing
 
 __Currently there is no testing suite for the server__
