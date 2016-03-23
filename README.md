@@ -32,7 +32,7 @@ To build and serve the production environment, run `grunt --force` from the `cli
 
 #### Database
 
-The database is run using MongoDB.  Please ensure you have MongoDB installed before continuing.
+The database is run using MongoDB. Please ensure you have MongoDB installed before continuing.
 Installation instructions may be found at docs.mongodb.org/manual/installation or running `brew install mongodb` if you use Brew Doctor.
 The database files are gitignored to avoid adding stored data to the repo.  You will need to install your own database locally.
 To do so run the following in your command line:
