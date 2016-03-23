@@ -41,6 +41,8 @@ To do so run the following in your command line:
 This second command will need to be run everytime before connecting node to the database for this project, so you may wish to alias it.
 It will ensure the project database is used by node and that `mongod` server logs are added to the log file in the logs directory.
 
+If you encounter errno61, connection refused when connecting to Mongo, you should run: `brew services start mongodb`
+
 ### Testing
 
 __Currently there is no testing suite for the server__
