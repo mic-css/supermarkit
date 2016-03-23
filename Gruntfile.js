@@ -48,6 +48,9 @@ module.exports = function(grunt) {
     },
     sass: {
       dist: {
+        options: {
+          cacheLocation: 'public/stylesheets/sass/.sass-cache'
+        },
         files: {
           'public/stylesheets/css/main.css': 'public/stylesheets/sass/main.scss'
         }

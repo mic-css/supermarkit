@@ -1,5 +1,6 @@
-/node_modules
+node_modules
 /public/bower_components
+/**/.sass-cache
 /**/npm-debug.log
 /**/.DS_Store
 /data
