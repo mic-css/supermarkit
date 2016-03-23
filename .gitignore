@@ -3,4 +3,6 @@
 /client/.tmp
 /client/.sass-cache
 /client/bower_components
-/npm-debug.log
+/**/npm-debug.log
+/**/.DS_Store
+/data
