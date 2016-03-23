@@ -1,8 +1,5 @@
-/**/node_modules
-/server/dist
-/client/.tmp
-/client/.sass-cache
-/client/bower_components
+/node_modules
+/bower_components
 /**/npm-debug.log
 /**/.DS_Store
 /data
