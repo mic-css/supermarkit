@@ -3,6 +3,10 @@
 /client/.tmp
 /client/.sass-cache
 /client/bower_components
+markpad.wiki
+data/
+/data
+markpad.wiki
 /**/npm-debug.log
 /**/.DS_Store
 /data
