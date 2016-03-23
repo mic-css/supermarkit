@@ -6,7 +6,8 @@ var UserModel = require('./schemas/users');
 
 // Connections
 var developmentDb = 'mongodb://localhost/test';
-var productionDb = 'urlToYourProductionMongoDb';
+// FIXME: add production db
+// var productionDb = 'urlToYourProductionMongoDb';
 var usedDb;
 
 // If we're in development...
