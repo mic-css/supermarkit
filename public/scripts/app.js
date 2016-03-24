@@ -2,6 +2,7 @@
 
 angular
   .module('markpad', [
+    'ngResource',
     'ngAnimate',
     'ngAria',
     'ngCookies',
