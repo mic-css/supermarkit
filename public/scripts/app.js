@@ -18,6 +18,11 @@ angular
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
+      .when('/notes/new', {
+        templateUrl: '../views/templates/note.html',
+        controller: 'NoteCtrl',
+        controllerAs: 'note'
+      })
       .otherwise({
         redirectTo: '/'
       });

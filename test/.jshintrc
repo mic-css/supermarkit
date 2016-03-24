@@ -16,6 +16,7 @@
     "browser": false,
     "by": false,
     "element": false,
-    "inject": false
+    "inject": false,
+    "marked": false
   }
 }
