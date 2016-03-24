@@ -10,6 +10,6 @@ describe('New note', function () {
     var mdView = element(by.id('md-view'));
 
     textArea.sendKeys('**test**');
-    expect(mdView.getText()).toContain('test');
+    expect(mdView.getInnerHtml()).toContain('<p><strong>test</strong></p>');
   });
 });
