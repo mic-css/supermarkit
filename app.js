@@ -4,10 +4,11 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
 var mongoose = require('mongoose');
-// var doc = require('./app/models/notes.js')
+
+//routers
 var indexRouter = require('./app/routes/indexRouter');
+var notesRouter = require('./app/routes/notesRouter');
 
 var app = express();
 
@@ -18,10 +19,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/public')));
 
+app.set('views', path.join(__dirname, 'app/views'));
+app.set('view engine', 'jade');
+
 // routing config
 
 app.use('/', indexRouter);
-
+app.use('/notes', notesRouter);
 // error handlers
 
 app.use(function(req, res, next) {
