@@ -12,8 +12,10 @@ marked.setOptions({
 });
 
 angular.module('markpad')
-    .controller('NoteCtrl',function($scope){
+    .controller('NoteCtrl', function ($scope) {
       $scope.result="";
+      $scope.source="";
+
       $scope.$watch('source', function() {
         $scope.result = marked($scope.source);
       });
