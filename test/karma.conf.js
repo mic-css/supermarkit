@@ -23,7 +23,7 @@ module.exports = function(config) {
       'public/bower_components/angular-sanitize/angular-sanitize.js',
       'public/bower_components/angular-touch/angular-touch.js',
       'public/bower_components/angular-mocks/angular-mocks.js',
-
+      'public/bower_components/marked/marked.min.js',
       'public/scripts/**/*.js',
       'test/spec/**/*.js'
     ],
