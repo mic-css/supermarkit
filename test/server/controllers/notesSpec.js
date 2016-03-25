@@ -5,7 +5,7 @@ var frisby = require('frisby');
 
 var URL = 'http://localhost:3000/notes/'
 
-beforeAll(function() {
+beforeEach(function() {
   mongoose.connect('mongodb://localhost/markpad-test', function() {
     mongoose.connection.db.dropDatabase();
   });
