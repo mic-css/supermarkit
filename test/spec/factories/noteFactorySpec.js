@@ -3,9 +3,7 @@ describe('Factory: Note', function() {
 
   var $httpBackend, $rootScope, noteFactory, note, testNote;
 
-  beforeEach(module('markpad', function ($routeProvider) {
-    $routeProvider.otherwise(function () { return false; });
-  }));
+  beforeEach(module('markpad'));
 
   beforeEach(inject(function(_$httpBackend_, _$rootScope_, Note) {
     $httpBackend  = _$httpBackend_;
@@ -13,7 +11,7 @@ describe('Factory: Note', function() {
     noteFactory   = Note;
   }));
 
-  beforeEach( function () {
+  beforeEach(function () {
     $httpBackend.whenGET(/views.*/).respond(200, '');
     testNote = {_id: 1, title: "Note1", body: "Test body"};
   });

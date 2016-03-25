@@ -1,27 +1,27 @@
-describe('Controller: NoteCtrl', function () {
+describe('Controller: EditorCtrl', function () {
   'use strict';
 
   beforeEach(module('markpad'));
 
-  var NoteCtrl, scope;
+  var EditorCtrl, scope;
 
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    NoteCtrl = $controller('NoteCtrl', {
+    EditorCtrl = $controller('EditorCtrl', {
       $scope: scope
     });
   }));
 
   it('should have an empty source and result', function () {
-    expect(NoteCtrl.source).toBe('');
-    expect(NoteCtrl.result).toBe('');
+    expect(EditorCtrl.source).toBe('');
+    expect(EditorCtrl.result).toBe('');
   });
 
   // TODO: stub marked methods
 
   it('should update the markdown result on input change', function () {
-    NoteCtrl.source = '**test**';
-    NoteCtrl.renderMd();
-    expect(NoteCtrl.result).toContain('<strong>test</strong>');
+    EditorCtrl.source = '**test**';
+    EditorCtrl.renderMd();
+    expect(EditorCtrl.result).toContain('<strong>test</strong>');
   });
 });

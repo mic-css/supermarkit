@@ -12,7 +12,7 @@ marked.setOptions({
 });
 
 angular.module('markpad')
-  .controller('NoteCtrl', function () {
+  .controller('EditorCtrl', function () {
     var self = this;
     self.result="";
     self.source="";
