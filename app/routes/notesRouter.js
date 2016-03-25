@@ -5,6 +5,9 @@ var notesController = require('../controllers/notesController.js');
 
 router.use(bodyParser.urlencoded({ extended: true }))
 
-router.route('/').post(notesController.create).get(notesController.list);
+var notesRouter = require('../controllers/notesController');
+router.route('/notes', notesRouter)
+
+// router.get ('/notes', controller.notes);
 
 module.exports = router;

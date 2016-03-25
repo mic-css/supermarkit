@@ -8,7 +8,7 @@ var mongoose = require('mongoose');
 
 //routers
 var indexRouter = require('./app/routes/indexRouter');
-var notesRouter = require('./app/routes/notesRouter');
+var notesRouter = require('./app/controllers/notesController');
 
 var app = express();
 
@@ -22,10 +22,10 @@ app.use(express.static(path.join(__dirname, '/public')));
 app.set('views', path.join(__dirname, 'app/views'));
 app.set('view engine', 'jade');
 
-// routing config
-
+// routing
 app.use('/', indexRouter);
 app.use('/notes', notesRouter);
+
 // error handlers
 
 app.use(function(req, res, next) {
@@ -55,6 +55,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
 
 module.exports = app;
