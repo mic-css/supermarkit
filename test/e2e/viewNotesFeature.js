@@ -5,8 +5,8 @@ describe('View notes', function () {
     browser.get('http://localhost:3000/');
   });
 
-  it("displays 'notes'", function () {
-    var body = element(by.css('body'));
-    expect(body.getText()).toContain('notes');
+  it("displays all existing notes", function () {
+    var notes = element.all(by.css('.note'));
+    expect(notes.count()).toBe(3);
   });
 });

@@ -18,4 +18,6 @@ describe('Controller: NotesCtrl', function () {
   it('should attach a list of notes to the scope', function () {
     expect(NotesCtrl.notes.length).toBe(3);
   });
+  
+
 });
