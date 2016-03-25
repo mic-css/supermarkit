@@ -6,4 +6,4 @@ var noteSchema = new mongoose.Schema({
   created_at: { type: Date, default: Date.now }
 });
 
-mongoose.model('Notes', noteSchema)
+mongoose.model('Notes', noteSchema);

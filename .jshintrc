@@ -13,6 +13,10 @@
   "unused": true,
   "globals": {
     "angular": false,
-    "inject": false
+    "browser": false,
+    "by": false,
+    "element": false,
+    "inject": false,
+    "marked": false
   }
 }

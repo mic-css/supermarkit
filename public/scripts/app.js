@@ -2,6 +2,7 @@
 
 angular
   .module('markpad', [
+    'ngResource',
     'ngAnimate',
     'ngAria',
     'ngCookies',
@@ -13,12 +14,17 @@ angular
   ])
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/', {
-        templateUrl: '../views/templates/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
+      .when('/notes', {
+        templateUrl: '../views/templates/notes.html',
+        controller: 'NotesCtrl',
+        controllerAs: 'notes'
+      })
+      .when('/notes/new', {
+        templateUrl: '../views/templates/editor.html',
+        controller: 'EditorCtrl',
+        controllerAs: 'editor'
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/notes'
       });
   });
