@@ -15,7 +15,7 @@ describe('Factory: Note', function() {
 
   beforeEach( function () {
     $httpBackend.whenGET(/views.*/).respond(200, '');
-    testNote = {id: 1, title: "Note1", body: "test body"};
+    testNote = {_id: 1, title: "Note1", body: "Test body"};
   });
 
   afterEach(function() {
@@ -38,10 +38,12 @@ describe('Factory: Note', function() {
   });
 
   it ('should update a note', function() {
-    $httpBackend.expectPOST('/api/notes').respond(201, '');
-    note = new noteFactory();
-    note.$save();
+    $httpBackend.whenGET('/api/notes/1').respond(200, testNote);
+    $httpBackend.expect('PUT', '/api/notes/1').respond(200, '');
+    note = noteFactory.get({id: 1}, function () {
+      note.body = 'Modified body';
+      note.$update();
+    });
     $httpBackend.flush();
   });
-
 });
