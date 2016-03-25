@@ -5,6 +5,10 @@
 * `npm install`
 * `bower install`
 
+To run test commands, you will need to globally install grunt-cli and nodemon:
+* `npm install -g grunt-cli`
+* `npm install -g nodemon`
+
 For front-end changes: `grunt sass`
 
 ## Run
