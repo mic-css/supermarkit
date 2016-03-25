@@ -1,12 +1,12 @@
-describe('Home page', function () {
+describe('View notes', function () {
   'use strict';
 
   beforeEach(function () {
     browser.get('http://localhost:3000/');
   });
 
-  it("displays 'hello world'", function () {
+  it("displays 'notes'", function () {
     var body = element(by.css('body'));
-    expect(body.getText()).toContain('Hello world');
+    expect(body.getText()).toContain('notes');
   });
 });
