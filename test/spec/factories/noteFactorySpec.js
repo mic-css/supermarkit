@@ -46,4 +46,15 @@ describe('Factory: Note', function() {
     });
     $httpBackend.flush();
   });
+
+  it ('should delete a note', function() {
+    $httpBackend.whenGET('/api/notes/1').respond(200, testNote);
+    $httpBackend.expect('DELETE', '/api/notes/1').respond(200, '');
+    note = noteFactory.get({id: 1}, function () {
+      note.$delete();
+    });
+    $httpBackend.flush();
+  });
+
+
 });
