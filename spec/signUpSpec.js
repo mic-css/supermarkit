@@ -16,11 +16,12 @@ describe('signUpController', function(){
   });
 
   it('exists', function(){
+    console.log(ctrl.controller);
     expect(ctrl.controller).toBeDefined();
   });
 
   it('passes a create call to the user model', function(){
-    var user = jasmine.createSpy().and.returnValue(undefined);
+    var user = jasmine.createSpy();
     ctrl.store();
     expect(user.create).toHaveBeenCalled();
   });
