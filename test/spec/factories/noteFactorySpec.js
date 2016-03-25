@@ -4,13 +4,13 @@ describe('Factory: Note', function() {
   var $httpBackend, $rootScope, noteFactory, note, testNote;
 
   beforeEach(module('markpad', function ($routeProvider) {
-     $routeProvider.otherwise(function(){return false;});
+    $routeProvider.otherwise(function () { return false; });
   }));
 
-  beforeEach(inject(function($injector){
-    $httpBackend = $injector.get('$httpBackend');
-    $rootScope = $injector.get('$rootScope');
-    noteFactory = $injector.get('Note');
+  beforeEach(inject(function(_$httpBackend_, _$rootScope_, Note) {
+    $httpBackend  = _$httpBackend_;
+    $rootScope    = _$rootScope_;
+    noteFactory   = Note;
   }));
 
   beforeEach( function () {
@@ -31,7 +31,7 @@ describe('Factory: Note', function() {
   });
 
   it ('should get an existing note', function() {
-    $httpBackend.expectGET('/api/notes/1').respond(200, JSON.stringify(testNote));
+    $httpBackend.expectGET('/api/notes/1').respond(200, testNote);
     note = noteFactory.get({id: 1});
     $httpBackend.flush();
     expect(note.toJSON()).toEqual(testNote);

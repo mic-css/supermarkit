@@ -17,6 +17,8 @@ describe('Controller: NoteCtrl', function () {
     expect(NoteCtrl.result).toBe('');
   });
 
+  // TODO: stub marked methods
+
   it('should update the markdown result on input change', function () {
     NoteCtrl.source = '**test**';
     NoteCtrl.renderMd();
