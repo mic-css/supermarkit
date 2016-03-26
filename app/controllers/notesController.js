@@ -6,7 +6,7 @@ router.get('/', getAllNotes);
 router.get('/:id', getNote);
 router.post('/', addNote);
 router.put('/:id', updateNote);
-// router.delete('/:id', deleteNote);
+router.delete('/:id', deleteNote);
 
 function getAllNotes(req, res) {
   Note.find(function (err, notes) {
@@ -44,11 +44,21 @@ function addNote(req, res) {
 }
 
 function updateNote(req, res) {
-  Note.findByIdAndUpdate(req.params.id, {$set: req.body}, {new: true}, function (err, task) {
+  Note.findByIdAndUpdate(req.params.id, {$set: req.body}, {new: true}, function (err, note) {
     if (err) {
-      res.status(400).json({'ERROR': err});
+      res.json({'ERROR': err});
     } else {
-      res.status(201).json({'UPDATED': task});
+      res.status(200).json({'UPDATED': note});
+    }
+  });
+}
+
+function deleteNote(req, res) {
+  Note.findByIdAndRemove(req.params.id, function (err, note) {
+    if (err) {
+      res.json({'ERROR': err});
+    } else {
+      res.status(200).json({'DELETED': note});
     }
   });
 }

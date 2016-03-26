@@ -94,7 +94,7 @@ describe('Notes', function() {
       .put('/notes/'+res.body._id)
       .send({'content': 'Note updated'})
       .end(function (err, res) {
-        res.should.have.status(201);
+        res.should.have.status(200);
         res.should.be.json;
         res.body.should.have.property('UPDATED');
         res.body.UPDATED.content.should.equal('Note updated');
@@ -106,19 +106,19 @@ describe('Notes', function() {
   it('should delete a note on /notes/:id DELETE', function(done) {
   chai.request(app)
     .get('/notes/'+note.id)
-
-    .end(function(err, res){
+    .end(function (err, res) {
       chai.request(app)
         .delete('/notes/'+res.body._id)
-        .end(function(error, response){
-          response.should.have.status(200);
-          response.should.be.json;
-          response.body.should.be.a('object');
-          response.body.should.have.property('REMOVED');
-          response.body.REMOVED.should.be.a('object');
-          response.body.REMOVED.should.have.property('name');
-          response.body.REMOVED.should.have.property('_id');
-          response.body.REMOVED.title.should.equal(note.title);
+        .end(function (err, res) {
+          console.log(res.body);
+          res.should.have.status(200);
+          res.should.be.json;
+          res.body.should.be.a('object');
+          res.body.should.have.property('DELETED');
+          res.body.DELETED.should.be.a('object');
+          res.body.DELETED.should.have.property('_id');
+          res.body.DELETED.title.should.equal(note.title);
+          res.body.DELETED.content.should.equal(note.content);
           done();
       });
     });
