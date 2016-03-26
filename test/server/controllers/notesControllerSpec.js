@@ -12,17 +12,17 @@ chai.use(chaiHttp);
 describe('Notes', function() {
   'use strict';
 
-  var newNote;
+  var note;
 
   Note.collection.drop();
 
   beforeEach(function(done){
-    newNote = new Note({
+    note = new Note({
       title: 'Note Title',
       content: 'Example note body'
     });
 
-    newNote.save(function(err) {
+    note.save(function(err) {
       if (err) {
         console.log('Error saving to database:', err);
       } else {
@@ -49,7 +49,7 @@ describe('Notes', function() {
 
   it('should return a note on /notes/:id GET', function (done) {
     chai.request(app)
-      .get('/notes/' + newNote.id)
+      .get('/notes/' + note.id)
       .end(function (err, res) {
         res.should.have.status(200);
         res.should.be.json;
@@ -59,7 +59,7 @@ describe('Notes', function() {
         res.body.should.have.property('content');
         res.body.title.should.equal('Note Title');
         res.body.content.should.equal('Example note body');
-        res.body._id.should.equal(newNote.id);
+        res.body._id.should.equal(note.id);
         done();
       });
   });
@@ -81,5 +81,22 @@ describe('Notes', function() {
         res.body.SUCCESS.content.should.equal('Example note body');
         done();
       });
+  });
+
+  it('should update a note on /notes/:id PUT', function (done) {
+    chai.request(app)
+    .get('/notes')
+    .end(function (err, res) {
+      chai.request(app)
+      .put('/notes/'+res.body[0]._id)
+      .send({'content': 'Note updated'})
+      .end(function (err, res) {
+        res.should.have.status(201);
+        res.should.be.json;
+        res.body.should.have.property('UPDATED');
+        res.body.UPDATED.content.should.equal('Note updated');
+        done();
+      });
+    });
   });
 });
