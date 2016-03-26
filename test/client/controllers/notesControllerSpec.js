@@ -43,11 +43,14 @@ describe('Controller: NotesCtrl', function () {
   beforeEach(inject(function ($controller, $rootScope) {
     NotesCtrl = $controller('NotesCtrl', {
       $scope: $rootScope,
-      Note: mockNoteFactory
     });
   }));
 
   it('should query the Note factory to load all notes', function () {
     expect(mockNoteFactory.query).toHaveBeenCalled();
+  });
+
+  it('should attach list of notes to the controller', function () {
+    expect(NotesCtrl.notes.length).toBe(3);
   });
 });
