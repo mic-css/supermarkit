@@ -26,4 +26,4 @@ $ npm run start-test
 # in separate terminal pane
 $ npm run test-protractor
 ```
-* To run the entire suite, ensure you have `webdriver-manager` and the test server running in the background as above, and run `npm run test-everything`
+* To run the entire suite, ensure you have `webdriver-manager` and the `test` server running in the background as above, and run `npm run test-everything`
