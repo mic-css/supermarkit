@@ -9,7 +9,7 @@
     "test-everything": "npm run test-mocha && npm run test-protractor && npm run test-karma",
     "test-protractor": "npm run update-webdriver && protractor test/protractor.conf.js",
     "test-karma": "grunt karma",
-    "test-mocha": "make test",
+    "test-mocha": "mocha 'test/server/**/*Spec.js'",
     "update-webdriver": "webdriver-manager update --standalone",
     "postinstall": "bower install"
   },
