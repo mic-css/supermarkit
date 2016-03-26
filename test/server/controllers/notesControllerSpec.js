@@ -102,4 +102,25 @@ describe('Notes', function() {
       });
     });
   });
+
+  it('should delete a note on /notes/:id DELETE', function(done) {
+  chai.request(app)
+    .get('/notes/'+note.id)
+
+    .end(function(err, res){
+      chai.request(app)
+        .delete('/notes/'+res.body._id)
+        .end(function(error, response){
+          response.should.have.status(200);
+          response.should.be.json;
+          response.body.should.be.a('object');
+          response.body.should.have.property('REMOVED');
+          response.body.REMOVED.should.be.a('object');
+          response.body.REMOVED.should.have.property('name');
+          response.body.REMOVED.should.have.property('_id');
+          response.body.REMOVED.title.should.equal(note.title);
+          done();
+      });
+    });
+});
 });
