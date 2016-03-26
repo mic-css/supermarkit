@@ -1,3 +1,6 @@
 <ul id="notes">
-  <li class="note" ng-repeat="note in notesCtrl.notes">{{note.title}}</li>
+  <li class="note" ng-repeat="note in notesCtrl.notes">
+    <span class="title">{{note.title}}</span>
+    <p class="preview">{{note.body}}</p>
+   </li>
 </ul>
