@@ -65,30 +65,33 @@ describe('Notes', function() {
   });
 
   it('should add a note on /notes POST', function (done) {
+    var newNote = {
+      'title': 'Note Title',
+      'content': 'Example note body'
+    };
+
     chai.request(app)
       .post('/notes')
-      .send({'title': 'Note Title', 'content': 'Example note body'})
+      .send(newNote)
       .end(function (err, res) {
         res.should.have.status(201);
         res.should.be.json;
         res.body.should.be.a('object');
         res.body.should.have.property('SUCCESS');
         res.body.SUCCESS.should.be.a('object');
-        res.body.SUCCESS.should.have.property('title');
-        res.body.SUCCESS.should.have.property('content');
         res.body.SUCCESS.should.have.property('_id');
-        res.body.SUCCESS.title.should.equal('Note Title');
-        res.body.SUCCESS.content.should.equal('Example note body');
+        res.body.SUCCESS.title.should.equal(newNote.title);
+        res.body.SUCCESS.content.should.equal(newNote.content);
         done();
       });
   });
 
   it('should update a note on /notes/:id PUT', function (done) {
     chai.request(app)
-    .get('/notes')
+    .get('/notes/'+note.id)
     .end(function (err, res) {
       chai.request(app)
-      .put('/notes/'+res.body[0]._id)
+      .put('/notes/'+res.body._id)
       .send({'content': 'Note updated'})
       .end(function (err, res) {
         res.should.have.status(201);
