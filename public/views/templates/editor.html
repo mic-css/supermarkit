@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col s4">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="textarea" ng-model="editor.source" ng-change="editor.renderMd()"></textarea>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div id="md-view" class="col s4 flow-text" ng-bind-html="editor.result"></div>
+</div>

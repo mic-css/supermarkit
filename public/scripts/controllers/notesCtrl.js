@@ -1,12 +1,10 @@
 'use strict';
 
 angular.module('markpad')
-  .controller('MainCtrl', function () {
-    this.awesomeThings = [
+  .controller('NotesCtrl', function () {
+    this.notes = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
-
-    this.hello = 'Hello world';
   });
