@@ -2,21 +2,12 @@ process.env.NODE_ENV = 'test';
 
 var chai = require('chai');
 var chaiHttp = require('chai-http');
-var mongoose = require('mongoose');
 var should = chai.should();
 
 var app = require('../../../app.js');
 var Note = require('../../../app/models/notes.js');
 
 chai.use(chaiHttp);
-
-mongoose.connect('mongodb://localhost/markpad-test', function (err, res) {
-  if (err) {
-    console.log('Error connecting to the database. ' + err);
-  } else {
-    console.log('Connected to Database: ' + 'mongodb://localhost/markpad-test');
-  }
-});
 
 describe('Notes', function() {
   'use strict';

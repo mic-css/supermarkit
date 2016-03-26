@@ -5,12 +5,25 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var config = require('./_config');
 
-//routers
 var indexRouter = require('./app/routes/indexRouter');
 var notesRouter = require('./app/controllers/notesController');
 
 var app = express();
+var db = process.env.MONGOLAB_URI || config.mongoURI[app.settings.env];
+
+// *** mongoose *** ///
+
+mongoose.connect(db, function(err, res) {
+  if(err) {
+    console.log('Error connecting to the database. ' + err);
+  } else {
+    console.log('Connected to Database: ' + db);
+  }
+});
+
+// *** parsing *** ///
 
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -19,14 +32,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/public')));
 
+// *** views *** ///
+
 app.set('views', path.join(__dirname, 'app/views'));
 app.set('view engine', 'jade');
 
-// routing
+// *** routing *** ///
+
 app.use('/', indexRouter);
 app.use('/notes', notesRouter);
 
-// error handlers
+// *** error handling *** ///
 
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
