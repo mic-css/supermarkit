@@ -14,6 +14,11 @@ marked.setOptions({
 angular.module('markpad')
   .controller('EditorCtrl', function () {
     var self = this;
+
+    // HACK: find a better way to inject this as an ng dependency
+    var aceEditor = window.ace.edit('ace-editor');
+    aceEditor.setValue('hello?');
+
     self.result="";
     self.source="";
 
