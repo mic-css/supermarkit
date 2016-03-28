@@ -14,8 +14,8 @@ marked.setOptions({
 angular.module('markpad')
   .controller('EditorCtrl', function () {
     var self = this;
-    self.result="";
-    self.source="";
+    self.result = "";
+    self.source = "";
 
     self.renderMd = function () {
       self.result = marked(self.source);

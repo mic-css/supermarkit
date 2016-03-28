@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var ctrl = require('../app/controllers/signUpController.js');
+var controller = ctrl.controller;
 
 describe('signUpController', function(){
 
@@ -17,7 +18,7 @@ describe('signUpController', function(){
 
   it('exists', function(){
     console.log(ctrl.controller);
-    expect(ctrl.controller).toBeDefined();
+    expect(controller).toBeDefined();
   });
 
   it('passes a create call to the user model', function(){
