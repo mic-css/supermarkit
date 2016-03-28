@@ -1,3 +1,5 @@
+'use strict';
+
 var express = require('express');
 var router = express.Router();
 var Note = require ('../models/notes');
@@ -34,7 +36,7 @@ function addNote(req, res) {
     content: req.body.content
   });
 
-  newNote.save(function(err){
+  newNote.save(function (err) {
     if (err) {
       res.json({'ERROR': err});
     } else {
