@@ -17,15 +17,20 @@ var notesController = require('./app/controllers/notesController');
 var app = express();
 var db = process.env.MONGOLAB_URI || config.mongoURI[app.settings.env];
 
+// *** mongoose *** ///
+
+mongoose.connect(db, function(err, res) {
+  if(err) {
+    console.log('Error connecting to the database. ' + err);
+  } else {
+    console.log('Connected to Database: ' + db);
+  }
+});
+
 // *** views *** ///
 
 app.set('views', './public/views/');
 app.set('view engine', 'jade');
-
-// *** routing *** ///
-
-app.use('/', indexRouter);
-app.use('/notes', notesController);
 
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
@@ -42,21 +47,16 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// *** routing *** ///
+
+app.use('/', indexRouter);
+app.use('/notes', notesController);
+
 // passport config
 var Account = require('./app/models/account');
 passport.use(new LocalStrategy(Account.authenticate()));
 passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
-
-// *** mongoose *** ///
-
-mongoose.connect(db, function(err, res) {
-  if(err) {
-    console.log('Error connecting to the database. ' + err);
-  } else {
-    console.log('Connected to Database: ' + db);
-  }
-});
 
 // *** error handling *** ///
 
