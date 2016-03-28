@@ -36,9 +36,9 @@ describe('Notes', function() {
     done();
   });
 
-  it('should return all notes on /notes GET', function (done) {
+  it('should return all notes on /api/notes GET', function (done) {
     chai.request(app)
-      .get('/notes')
+      .get('/api/notes')
       .end(function (err, res) {
         res.should.have.status(200);
         res.should.be.json;
@@ -47,9 +47,9 @@ describe('Notes', function() {
       });
   });
 
-  it('should return a note on /notes/:id GET', function (done) {
+  it('should return a note on /api/notes/:id GET', function (done) {
     chai.request(app)
-      .get('/notes/' + note.id)
+      .get('/api/notes/' + note.id)
       .end(function (err, res) {
         res.should.have.status(200);
         res.should.be.json;
@@ -64,14 +64,14 @@ describe('Notes', function() {
       });
   });
 
-  it('should add a note on /notes POST', function (done) {
+  it('should add a note on /api/notes POST', function (done) {
     var newNote = {
       'title': 'Note Title',
       'content': 'Example note body'
     };
 
     chai.request(app)
-      .post('/notes')
+      .post('/api/notes')
       .send(newNote)
       .end(function (err, res) {
         res.should.have.status(201);
@@ -86,12 +86,12 @@ describe('Notes', function() {
       });
   });
 
-  it('should update a note on /notes/:id PUT', function (done) {
+  it('should update a note on /api/notes/:id PUT', function (done) {
     chai.request(app)
-    .get('/notes/'+note.id)
+    .get('/api/notes/'+note.id)
     .end(function (err, res) {
       chai.request(app)
-      .put('/notes/'+res.body._id)
+      .put('/api/notes/'+res.body._id)
       .send({'content': 'Note updated'})
       .end(function (err, res) {
         res.should.have.status(200);
@@ -103,12 +103,12 @@ describe('Notes', function() {
     });
   });
 
-  it('should delete a note on /notes/:id DELETE', function(done) {
+  it('should delete a note on /api/notes/:id DELETE', function(done) {
   chai.request(app)
-    .get('/notes/'+note.id)
+    .get('/api/notes/'+note.id)
     .end(function (err, res) {
       chai.request(app)
-        .delete('/notes/'+res.body._id)
+        .delete('/api/notes/'+res.body._id)
         .end(function (err, res) {
           res.should.have.status(200);
           res.should.be.json;

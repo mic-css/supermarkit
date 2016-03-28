@@ -1,10 +1,7 @@
-'use strict';
-
 angular.module('markpad')
-  .controller('NotesCtrl', function () {
-    this.notes = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+  .controller('NotesCtrl', ['Note', function (Note) {
+    'use strict';
+    var self = this;
+
+    self.notes = Note.query() || [];
+  }]);

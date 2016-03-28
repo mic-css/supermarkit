@@ -17,7 +17,7 @@ angular
       .when('/notes', {
         templateUrl: '../views/templates/notes.html',
         controller: 'NotesCtrl',
-        controllerAs: 'notes'
+        controllerAs: 'notesCtrl'
       })
       .when('/notes/new', {
         templateUrl: '../views/templates/editor.html',
