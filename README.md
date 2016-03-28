@@ -12,6 +12,7 @@ For front-end changes: `grunt sass`
 
 ## Run
 
+* `npm install -g node-mongo-seeds` install node-mongo-seeds to seed the database
 * `npm run start-dev` and navigate to [localhost:3000](http://localhost:3000/)
 
 ## Test
