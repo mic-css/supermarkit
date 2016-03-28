@@ -40,7 +40,7 @@ app.set('view engine', 'jade');
 // *** routing *** ///
 
 app.use('/', indexRouter);
-app.use('/notes', notesController);
+app.use('/api/notes', notesController);
 
 // *** error handling *** ///
 
