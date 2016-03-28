@@ -3,12 +3,11 @@ describe('Controller: EditorCtrl', function () {
 
   beforeEach(module('markpad'));
 
-  var EditorCtrl, scope;
+  var EditorCtrl;
 
   beforeEach(inject(function ($controller, $rootScope) {
-    scope = $rootScope.$new();
     EditorCtrl = $controller('EditorCtrl', {
-      $scope: scope
+      $scope: $rootScope
     });
   }));
 

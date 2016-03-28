@@ -50,7 +50,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // *** routing *** ///
 
 app.use('/', indexRouter);
-app.use('/notes', notesController);
+app.use('/api/notes', notesController);
 
 // passport config
 var Account = require('./app/models/account');
