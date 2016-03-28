@@ -22,6 +22,7 @@
     "jade": "^1.11.0",
     "mongoose": "^4.4.9",
     "morgan": "~1.6.1",
+    "passport": "^0.3.2",
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
