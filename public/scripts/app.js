@@ -26,7 +26,7 @@ angular
       })
       .when('/signup', {
         templateUrl: '../views/templates/signup.html',
-        controller: 'SignUpCtrl'
+        controller: 'SignUpCtrl',
         controllerAs: 'signUp'
       })
       .otherwise({
