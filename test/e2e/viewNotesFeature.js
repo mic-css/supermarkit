@@ -10,8 +10,8 @@ describe('View notes', function () {
     var firstNoteTitle = element.all(by.css('.note .title')).first().getText();
     var firstNotePreview = element.all(by.css('.note .preview')).first().getText();
 
-    expect(notes.count()).toBe(3);
-    expect(firstNoteTitle).toEqual('Test Note 1');
-    expect(firstNotePreview).toEqual('This is a test');
+    expect(notes.count()).toBe(1);
+    expect(firstNoteTitle).toEqual('Welcome to Markpad');
+    expect(firstNotePreview).toContain("Here's a quick introduction to markdown");
   });
 });
