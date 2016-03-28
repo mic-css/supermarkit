@@ -17,6 +17,16 @@ var notesController = require('./app/controllers/notesController');
 var app = express();
 var db = process.env.MONGOLAB_URI || config.mongoURI[app.settings.env];
 
+// *** mongoose *** ///
+
+mongoose.connect(db, function(err, res) {
+  if(err) {
+    console.log('Error connecting to the database. ' + err);
+  } else {
+    console.log('Connected to Database: ' + db);
+  }
+});
+
 // *** views *** ///
 
 app.set('views', './public/views/');
@@ -26,6 +36,7 @@ app.set('view engine', 'jade');
 
 app.use('/', indexRouter);
 app.use('/notes', notesController);
+
 
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
@@ -48,15 +59,6 @@ passport.use(new LocalStrategy(Account.authenticate()));
 passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
 
-// *** mongoose *** ///
-
-mongoose.connect(db, function(err, res) {
-  if(err) {
-    console.log('Error connecting to the database. ' + err);
-  } else {
-    console.log('Connected to Database: ' + db);
-  }
-});
 
 // *** error handling *** ///
 
