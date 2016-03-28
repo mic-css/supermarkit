@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 /**
  * Module dependencies.
  */
@@ -14,17 +15,6 @@ var mongoose = require('mongoose');
 
 var port = normalizePort(process.env.PORT || '8080');
 app.set('port', port);
-
-/**
-* Connect to MongoDB
-*/
-mongoose.connect(process.env.MONGOLAB_URI, function (err, res) {
-  if (err) {
-    console.log('Error connecting to the database. ' + err);
-  } else {
-    console.log('Connected to Database: ' + process.env.MONGOLAB_URI);
-  }
-});
 
 /**
  * Create HTTP server.

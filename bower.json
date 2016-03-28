@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "dependencies": {
     "angular": "^1.4.0",
-    "bootstrap-sass-official": "^3.2.0",
     "angular-animate": "^1.4.0",
     "angular-aria": "^1.4.0",
     "angular-cookies": "^1.4.0",
@@ -12,6 +11,7 @@
     "angular-route": "^1.4.0",
     "angular-sanitize": "^1.4.0",
     "angular-touch": "^1.4.0",
+    "bootstrap-sass-official": "^3.2.0",
     "marked": "^0.3.5"
   },
   "devDependencies": {

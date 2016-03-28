@@ -3,9 +3,8 @@
 ## Build
 
 * `npm install`
-* `bower install`
 
-To run test commands, you will need to globally install grunt-cli and nodemon:
+To run test commands, you will need to globally install grunt-cli and nodemon if you haven't already:
 * `npm install -g grunt-cli`
 * `npm install -g nodemon`
 
@@ -17,10 +16,14 @@ For front-end changes: `grunt sass`
 
 ## Test
 
-* Karma Angular unit tests: `npm run test-karma`
-* Protractor: (in separate terminal panes)
+* Front-end unit tests: `npm run test-karma`
+* Back-end unit tests: `npm run test-mocha`
+* End-to-end testing: (run the following in separate terminal panes)
 ```sh
 $ webdriver-manager start
+# in separate terminal pane
 $ npm run start-test
+# in separate terminal pane
 $ npm run test-protractor
 ```
+* To run the entire suite, ensure you have `webdriver-manager` and the `test` server running in the background as above, and run `npm run test-everything`
