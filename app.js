@@ -32,12 +32,6 @@ mongoose.connect(db, function(err, res) {
 app.set('views', './public/views/');
 app.set('view engine', 'jade');
 
-// *** routing *** ///
-
-app.use('/', indexRouter);
-app.use('/notes', notesController);
-
-
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 app.use(logger('dev'));
@@ -53,12 +47,16 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// *** routing *** ///
+
+app.use('/', indexRouter);
+app.use('/notes', notesController);
+
 // passport config
 var Account = require('./app/models/account');
 passport.use(new LocalStrategy(Account.authenticate()));
 passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
-
 
 // *** error handling *** ///
 

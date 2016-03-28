@@ -24,10 +24,10 @@ angular
         controller: 'EditorCtrl',
         controllerAs: 'editor'
       })
-      .when('/signup', {
-        templateUrl: '../views/templates/signup.html',
-        controller: 'SignUpCtrl',
-        controllerAs: 'signUp'
+      .when('/register', {
+        templateUrl: '../views/templates/register.html',
+        controller: 'usersCtrl',
+        controllerAs: 'registration'
       })
       .otherwise({
         redirectTo: '/notes'
