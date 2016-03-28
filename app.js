@@ -19,7 +19,7 @@ var db = process.env.MONGOLAB_URI || config.mongoURI[app.settings.env];
 
 // *** views *** ///
 
-app.set('views', path.join(__dirname, 'app/views'));
+app.set('views', './public/views/');
 app.set('view engine', 'jade');
 
 // *** routing *** ///
