@@ -13,32 +13,56 @@ var User = require("../../../app/models/users.js");
 // var server = chai.use('localhost:3000');
 
 describe('User', function() {
-  var user;
+  var user = {username: "A username", email: "test@test.com", password: "Password"};
 
   User.collection.drop();
 
   beforeEach(function(done){
-    user = new User({
-      username: 'test',
-      email: 'test@test.test',
-      password: 't3sty'
-    });
-
-    user.save(function(err){
-      if (err) {
-        console.log("Error saving user to database: ", err);
-      } else {
-        done();
-      }
-    });
-  });
-
-  afterEach(function(done){
-    User.collection.drop();
+    User.register(new User({ username : user.username, email : user.email }), user.password, function(err, user) {});
     done();
   });
-//   it('should return an ok response', function() {
-//     chai.request(app)
-//     .post('/users/register')
-//   });
+
+  it("should register a new user on users/register", function(done){
+    var newUser = {
+      username: "Matt",
+      email: "Matt@test.com",
+      password: 'password'
+    };
+
+    chai.request(app)
+      .post('/users/register')
+      .send(newUser)
+      .end(function(err, res){
+        res.should.be.json;
+        res.should.have.status(200);
+        res.body.should.have.property('info');
+        res.body.info.should.equal('success');
+        done();
+      });
+  });
+
+
+  it("should log in with an existing user", function(done){
+    chai.request(app)
+      .post('/users/login')
+      .send(user)
+      .end(function(err, res){
+        res.should.be.json;
+        res.should.have.status(200);
+        res.body.should.have.property('info');
+        res.body.info.should.equal('Login Successful');
+        done();
+      });
+  });
+
+  it("should not a allow a register to signup on a used email", function(done){
+    chai.request(app)
+      .post('/users/register')
+      .send(user)
+      .end(function(err, res){
+        res.should.be.json;
+        res.should.have.status(500);
+        done();
+      });
+  });
 });
