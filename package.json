@@ -6,7 +6,7 @@
     "start": "node ./bin/www",
     "start-dev": "NODE_ENV=development seed && nodemon --debug ./bin/dev",
     "start-test": "NODE_ENV=test seed && nodemon --debug ./bin/test",
-    "test-everything": "npm run test-protractor && npm run test-mocha && npm run test-karma",
+    "test-suite": "npm run test-protractor && npm run test-mocha && npm run test-karma",
     "test-protractor": "npm run update-webdriver && protractor test/protractor.conf.js",
     "test-karma": "grunt karma",
     "test-mocha": "mocha 'test/server/**/*Spec.js'",

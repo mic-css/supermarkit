@@ -8,7 +8,7 @@ var mongoose = require('mongoose');
 var config = require('./_config');
 
 var indexRouter = require('./app/routes/indexRouter');
-var notesController = require('./app/controllers/notesController');
+var notesRouter = require('./app/routes/notesRouter');
 
 var app = express();
 var db = process.env.MONGOLAB_URI || config.mongoURI[app.settings.env];
@@ -40,7 +40,7 @@ app.set('view engine', 'jade');
 // *** routing *** ///
 
 app.use('/', indexRouter);
-app.use('/api/notes', notesController);
+app.use('/api/notes', notesRouter);
 
 // *** error handling *** ///
 
