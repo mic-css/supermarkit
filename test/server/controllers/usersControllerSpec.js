@@ -1,36 +1,44 @@
+'use strict';
+
 process.env.NODE_ENV = 'test';
 
 var mongoose = require('mongoose');
 var chai = require('chai');
+var should = chai.should();
 var chaiHttp = require('chai-http');
 var app = require('../../../app.js');
 var User = require("../../../app/models/users.js");
 
+
+// var server = chai.use('localhost:3000');
+
 describe('User', function() {
-  beforeEach(function(done) {
-      var user = new User({
-          username: '12345',
-          email: 'test@test.com',
-          password: 'testy'
-      });
-      user.save(function(error) {
-          if (error) console.log('error' + error.message);
-          else console.log('no error');
-          done();
-      });
+  var user;
+
+  User.collection.drop();
+
+  beforeEach(function(done){
+    user = new User({
+      username: 'test',
+      email: 'test@test.test',
+      password: 't3sty'
+    });
+
+    user.save(function(err){
+      if (err) {
+        console.log("Error saving user to database: ", err);
+      } else {
+        done();
+      }
+    });
   });
 
-  it('find a user by username', function(done) {
-      User.findOne({ username: '12345' }, function(err, user) {
-          User.username.should.eql('12345');
-          console.log("   username: ", user.username);
-          done();
-      });
+  afterEach(function(done){
+    User.collection.drop();
+    done();
   });
-
-  afterEach(function(done) {
-      User.remove({}, function() {
-          done();
-      });
-   });
+//   it('should return an ok response', function() {
+//     chai.request(app)
+//     .post('/users/register')
+//   });
 });

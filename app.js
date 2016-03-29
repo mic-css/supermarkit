@@ -50,7 +50,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // *** routing *** ///
 
 app.use('/', indexRouter);
-app.use('/notes', notesController);
+app.use('/api/notes', notesController);
 app.use('/users', usersRouter);
 
 
