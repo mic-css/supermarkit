@@ -22,6 +22,8 @@ module.exports = function(config) {
       'public/bower_components/angular-touch/angular-touch.js',
       'public/bower_components/angular-mocks/angular-mocks.js',
       'public/bower_components/marked/marked.min.js',
+      'public/bower_components/ace-builds/src/ace.js',
+      'public/bower_components/angular-ui-ace/ui-ace.js',
       'public/scripts/**/*.js',
       'test/client/**/*.js'
     ],

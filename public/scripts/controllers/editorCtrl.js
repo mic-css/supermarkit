@@ -12,17 +12,24 @@ marked.setOptions({
 });
 
 angular.module('markpad')
-  .controller('EditorCtrl', function () {
+  .controller('EditorCtrl', ['$scope', function ($scope) {
     var self = this;
 
-    // HACK: find a better way to inject this as an ng dependency
-    var aceEditor = window.ace.edit('ace-editor');
-    aceEditor.setValue('hello?');
+    $scope.aceLoaded = function (_editor) {
+      var _session = _editor.getSession();
+      var _renderer = _editor.renderer;
 
-    self.result="";
-    self.source="";
+      _editor.setReadOnly(false);
+      _editor.focus();
+      _renderer.setShowGutter(false);
+    };
+
+    self.source = '';
+    self.result = '';
 
     self.renderMd = function () {
       self.result = marked(self.source);
     };
-  });
+
+    self.renderMd();
+  }]);
