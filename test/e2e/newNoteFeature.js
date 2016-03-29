@@ -6,7 +6,6 @@ describe('New note', function () {
   });
 
   it('renders text input as markdown', function () {
-    // browser.wait(element(by.css('.editor')).isPresent);
     var editor = element(by.css('.ace_text-input'));
     var mdView = element(by.id('md-view'));
 

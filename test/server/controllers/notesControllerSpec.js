@@ -54,12 +54,9 @@ describe('Notes', function() {
         res.should.have.status(200);
         res.should.be.json;
         res.body.should.be.a('object');
-        res.body.should.have.property('_id');
-        res.body.should.have.property('title');
-        res.body.should.have.property('content');
+        res.body._id.should.equal(note.id);
         res.body.title.should.equal('Note Title');
         res.body.content.should.equal('Example note body');
-        res.body._id.should.equal(note.id);
         done();
       });
   });
