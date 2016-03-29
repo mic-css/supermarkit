@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var config = require('./_config');
 var passport = require('passport');
+var fs = require('fs');
 var LocalStrategy = require('passport-local').Strategy;
 
 var indexRouter = require('./app/routes/indexRouter');
@@ -25,6 +26,12 @@ mongoose.connect(db, function(err, res) {
   } else {
     console.log('Connected to Database: ' + db);
   }
+});
+
+
+//load all files in models dir
+fs.readdirSync(__dirname + '/app/models').forEach(function(filename) {
+  if (~filename.indexOf('.js')) require(__dirname + '/app/models/' + filename)
 });
 
 // *** views *** ///
