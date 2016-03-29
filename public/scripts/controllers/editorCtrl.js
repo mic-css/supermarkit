@@ -12,12 +12,24 @@ marked.setOptions({
 });
 
 angular.module('markpad')
-  .controller('EditorCtrl', function () {
+  .controller('EditorCtrl', ['$scope', function ($scope) {
     var self = this;
-    self.result="";
-    self.source="";
+
+    $scope.aceLoaded = function (_editor) {
+      var _session = _editor.getSession();
+      var _renderer = _editor.renderer;
+
+      _editor.setReadOnly(false);
+      _editor.focus();
+      _renderer.setShowGutter(false);
+    };
+
+    self.source = '';
+    self.result = '';
 
     self.renderMd = function () {
       self.result = marked(self.source);
     };
-  });
+
+    self.renderMd();
+  }]);
