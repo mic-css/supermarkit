@@ -1,0 +1,5 @@
+{
+	"undefined": "localhost/markpad-development",
+	"development": "localhost/markpad-development",
+	"test": "localhost/markpad-test"
+}

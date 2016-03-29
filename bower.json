@@ -12,7 +12,9 @@
     "angular-sanitize": "^1.4.0",
     "angular-touch": "^1.4.0",
     "bootstrap-sass-official": "^3.2.0",
-    "marked": "^0.3.5"
+    "marked": "^0.3.5",
+    "ace": "^1.2.3",
+    "angular-ui-ace": "bower"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0",
