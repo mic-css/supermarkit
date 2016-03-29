@@ -10,7 +10,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 var indexRouter = require('./app/routes/indexRouter');
-var usersRouter = require('./app/routes/usersRouter')
+var usersRouter = require('./app/routes/usersRouter');
 var notesController = require('./app/controllers/notesController');
 
 
@@ -50,13 +50,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 // *** routing *** ///
 
 app.use('/', indexRouter);
-app.use('/api/notes', notesController);
+app.use('/notes', notesController);
+app.use('/users', usersRouter);
+
 
 // passport config
-var Account = require('./app/models/account');
-passport.use(new LocalStrategy(Account.authenticate()));
-passport.serializeUser(Account.serializeUser());
-passport.deserializeUser(Account.deserializeUser());
+var User = require('./app/models/users');
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 // *** error handling *** ///
 
