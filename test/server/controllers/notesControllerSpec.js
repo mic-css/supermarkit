@@ -104,22 +104,22 @@ describe('Notes', function() {
   });
 
   it('should delete a note on /api/notes/:id DELETE', function(done) {
-  chai.request(app)
-    .get('/api/notes/'+note.id)
-    .end(function (err, res) {
-      chai.request(app)
-        .delete('/api/notes/'+res.body._id)
-        .end(function (err, res) {
-          res.should.have.status(200);
-          res.should.be.json;
-          res.body.should.be.a('object');
-          res.body.should.have.property('DELETED');
-          res.body.DELETED.should.be.a('object');
-          res.body.DELETED.should.have.property('_id');
-          res.body.DELETED.title.should.equal(note.title);
-          res.body.DELETED.content.should.equal(note.content);
-          done();
+    chai.request(app)
+      .get('/api/notes/'+note.id)
+      .end(function (err, res) {
+        chai.request(app)
+          .delete('/api/notes/'+res.body._id)
+          .end(function (err, res) {
+            res.should.have.status(200);
+            res.should.be.json;
+            res.body.should.be.a('object');
+            res.body.should.have.property('DELETED');
+            res.body.DELETED.should.be.a('object');
+            res.body.DELETED.should.have.property('_id');
+            res.body.DELETED.title.should.equal(note.title);
+            res.body.DELETED.content.should.equal(note.content);
+            done();
+        });
       });
-    });
-});
+  });
 });
