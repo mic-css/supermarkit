@@ -38,9 +38,9 @@ describe('User', function() {
   });
 
   it('should validate the email as present', function(done) {
-    user = new User({ username: "Testy McTestface", email: "test@test.com", password: "Password" });
+    user = new User({ username: "Testy McTestface", email: "", password: "Password" });
     user.save(function(err) {
-      err.errors.username.message.should.equal('Email is required.');
+      err.errors.email.message.should.equal('Email is required.');
       done();
     });
   });
