@@ -6,7 +6,7 @@ var passport = require('passport');
 var User = require('../models/users.js');
 var router = express.Router();
 
-router.route('/register')
+router.route('/signup')
   .post(function(req, res) {
     User.register(new User({ username : req.body.username }), req.body.password, function(err, user) {
       if (err) {
@@ -35,7 +35,7 @@ router.route('/login')
           return res.status(500).json({err: 'Could not log in user'});
         }
 
-        res.status(200).json({info: 'Login Successful'});
+        res.status(200).json({info: 'Login successful'});
       });
     })(req, res, next);
   });

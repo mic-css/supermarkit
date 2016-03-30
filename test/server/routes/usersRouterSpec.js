@@ -25,9 +25,9 @@ describe('User', function() {
     done();
   });
 
-  it('should register a new user on users/register', function (done) {
+  it('should register a new user on users/signup', function (done) {
     chai.request(app)
-      .post('/users/register')
+      .post('/users/signup')
       .send(user)
       .end(function (err, res) {
         res.should.be.json;
@@ -39,7 +39,7 @@ describe('User', function() {
   });
 
 
-  it('should log in with an existing user', function (done) {
+  it('should log in an existing user', function (done) {
     chai.request(app)
       .post('/users/login')
       .send(user)
@@ -47,14 +47,14 @@ describe('User', function() {
         res.should.be.json;
         res.should.have.status(200);
         res.body.should.have.property('info');
-        res.body.info.should.equal('Login Successful');
+        res.body.info.should.equal('Login successful');
         done();
       });
   });
 
-  it('should not a allow a register to signup on a used email', function (done) {
+  it('should not a allow a user to signup on a used email', function (done) {
     chai.request(app)
-      .post('/users/register')
+      .post('/users/signup')
       .send(user)
       .end(function (err, res) {
         res.should.be.json;

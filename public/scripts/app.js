@@ -15,6 +15,20 @@ angular
   ])
   .config(function ($routeProvider) {
     $routeProvider
+      .when('/signup', {
+        templateUrl: '../templates/signup.html',
+        controller: 'SignupCtrl',
+        controllerAs: 'signupCtrl'
+      })
+      .when('/login', {
+        templateUrl: '../templates/login.html',
+        controller: 'LoginCtrl',
+        controllerAs: 'loginCtrl'
+      })
+      .when('/logout', {
+        controller: 'LogoutCtrl',
+        controllerAs: 'loginCtrl'
+      })
       .when('/notes', {
         templateUrl: '../views/templates/notes.html',
         controller: 'NotesCtrl',
@@ -24,11 +38,6 @@ angular
         templateUrl: '../views/templates/editor.html',
         controller: 'EditorCtrl',
         controllerAs: 'editor'
-      })
-      .when('/register', {
-        templateUrl: '../views/templates/register.html',
-        controller: 'usersCtrl',
-        controllerAs: 'registration'
       })
       .otherwise({
         redirectTo: '/notes'
