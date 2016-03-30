@@ -18,7 +18,7 @@ angular.module('markpad')
     $scope.aceLoaded = function (_editor) {
       var _session = _editor.getSession();
       var _renderer = _editor.renderer;
-
+      _editor.setValue()
       _editor.setReadOnly(false);
       _editor.focus();
       _renderer.setShowGutter(false);

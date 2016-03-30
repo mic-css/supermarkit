@@ -25,6 +25,11 @@ angular
         controller: 'EditorCtrl',
         controllerAs: 'editor'
       })
+      .when('/note', {
+        templateUrl: '../views/templates/editor.html',
+        controller: 'EditorCtrl',
+        controllerAs: 'editor'
+      })
       .otherwise({
         redirectTo: '/notes'
       });
