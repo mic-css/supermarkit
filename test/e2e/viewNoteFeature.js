@@ -1,6 +1,6 @@
 describe('View single note', function () {
  'use strict';
-  var note, editor;
+  var note, preview;
 
   beforeEach(function () {
     browser.get('http://localhost:3000/');
@@ -9,7 +9,7 @@ describe('View single note', function () {
   });
 
   it("shows a single note", function () {
-    editor = element(by.css('.editor'));
-    expect(editor.getText()).toContain(note.content);
+    preview = element(by.id('md-view'));
+    expect(preview.getText()).toContain("Here's a quick markdown tutorial");
   });
 });

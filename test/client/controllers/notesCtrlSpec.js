@@ -1,7 +1,7 @@
 describe('Controller: NotesCtrl', function () {
   'use strict';
 
-  var NotesCtrl, mockNoteFactory, mockCurrentNoteService;
+  var NotesCtrl, mockNoteFactory, mockCurrentNoteService, note;
   var mockNotes = [
     {
       "_id": "56f6d8cbd7c4711bae9abd52",
@@ -66,9 +66,9 @@ describe('Controller: NotesCtrl', function () {
     expect(NotesCtrl.notes.length).toBe(3);
   });
 
-  it('should call currentNoteService.setCurrentNote with the correct parameter', function () {
-    NotesCtrl.setCurrent('testNote');
-
-    expect(mockCurrentNoteService.setCurrentNote).toHaveBeenCalledWith('testNote');
+  it('should set the current note in currentNoteService', function () {
+    note = {title: "Sample note", content: "*Some markdown*"};
+    NotesCtrl.setCurrent(note);
+    expect(mockCurrentNoteService.setCurrentNote).toHaveBeenCalledWith(note);
   });
 });
