@@ -23,13 +23,25 @@ describe('User', function() {
 
   it('should validate the username as present', function(done) {
     user = new User({ username: "", email: "test@test.com", password: "Password" });
-    user.should.respondTo('save');
     user.save(function(err) {
-      console.log(err.errors.username.message);
-      err.should.exist;
-      console.log(err.errors.username.message.should.equal('Username is required.'));
-      console.log('Here kitty kitty');
+      err.errors.username.message.should.equal('Username is required.');
+      done();
     });
-    done();
+  });
+
+  it('should reject the username if it is less than three characters long', function(done) {
+    user = new User({ username: "dz", email: "test@test.com", password: "Password" });
+    user.save(function(err) {
+      err.errors.username.message.should.equal('Username must be three characters or longer.');
+      done();
+    });
+  });
+
+  it('should validate the email as present', function(done) {
+    user = new User({ username: "Testy McTestface", email: "test@test.com", password: "Password" });
+    user.save(function(err) {
+      err.errors.username.message.should.equal('Email is required.');
+      done();
+    });
   });
 });

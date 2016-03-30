@@ -5,9 +5,9 @@ var Schema = mongoose.Schema;
 var passportLocalMongoose = require('passport-local-mongoose');
 
 var userSchema = new Schema({
-  username  : { type: String, required: 'Username is lollypops.'
-/*minlength: [3, 'Username must be five characters or longer.']*/ },
-  email     : String,
+  username  : { type: String, required: 'Username is required.',
+  minlength: [3, 'Username must be three characters or longer.'] },
+  email     : { type: String, required: 'Email is required.'},
   password  : String
 });
 
