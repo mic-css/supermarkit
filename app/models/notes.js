@@ -11,4 +11,4 @@ var notesSchema = new Schema({
   created_at: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model('Notes', notesSchema);
+module.exports = mongoose.model('notes', notesSchema);

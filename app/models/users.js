@@ -24,4 +24,4 @@ userSchema.plugin(passportLocalMongoose);
 //   });
 // };
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('users', userSchema);

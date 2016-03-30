@@ -3,8 +3,8 @@ process.env.NODE_ENV = 'test';
 var chai = require('chai');
 var chaiHttp = require('chai-http');
 var should = chai.should();
-
 var app = require('../../../app.js');
+var User = require("../../../app/models/users.js");
 var Note = require('../../../app/models/notes.js');
 
 chai.use(chaiHttp);
@@ -16,7 +16,15 @@ describe('Notes', function() {
 
   Note.collection.drop();
 
+  var user = {username: "A username", email: "test@test.com", password: "Password"};
+  // User.register(new User({ username : user.username, email : user.email }), user.password, function(err, user) {});
+  var agent = chai.request.agent(app);
   beforeEach(function(done){
+    agent
+      .post('/users/register')
+      .send(user)
+      .end();
+
     note = new Note({
       title: 'Note Title',
       content: 'Example note body'
@@ -33,17 +41,24 @@ describe('Notes', function() {
 
   afterEach(function (done) {
     Note.collection.drop();
+    User.collection.drop();
     done();
   });
 
   it('should return all notes on /api/notes GET', function (done) {
-    chai.request(app)
-      .get('/api/notes')
-      .end(function (err, res) {
-        res.should.have.status(200);
-        res.should.be.json;
-        res.body.should.be.a('array');
-        done();
+    agent
+      .post('/users/register')
+      .send(user)
+      .then(function() {
+        return agent
+          .get('/api/notes')
+          .end(function (err, res) {
+            res.should.have.status(200);
+            res.should.be.json;
+            console.log(res.body)
+            res.body.should.be.a('array');
+            done();
+          });
       });
   });
 
