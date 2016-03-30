@@ -16,11 +16,6 @@ describe('Factory: Note', function() {
     testNote = {_id: 1, title: "Note1", body: "Test body"};
   });
 
-  afterEach(function() {
-    $httpBackend.verifyNoOutstandingExpectation();
-    $httpBackend.verifyNoOutstandingRequest();
-  });
-
   it ('should post new note', function() {
     $httpBackend.expectPOST('/api/notes').respond(201, '');
     note = new noteFactory();
@@ -53,6 +48,4 @@ describe('Factory: Note', function() {
     });
     $httpBackend.flush();
   });
-
-
 });
