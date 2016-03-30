@@ -1,3 +1,5 @@
+'use strict';
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -6,8 +8,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var config = require('./_config');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 
 var indexRouter = require('./app/routes/indexRouter');
+var usersRouter = require('./app/routes/usersRouter');
 var notesRouter = require('./app/routes/notesRouter');
 
 var app = express();
@@ -23,24 +28,38 @@ mongoose.connect(db, function(err, res) {
   }
 });
 
-// *** parsing *** ///
+// *** views *** ///
+
+app.set('views', './public/views/');
+app.set('view engine', 'jade');
 
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '/public')));
-
-// *** views *** ///
-
-app.set('views', path.join(__dirname, 'app/views'));
-app.set('view engine', 'jade');
+app.use(require('express-session')({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(express.static(path.join(__dirname, 'public')));
 
 // *** routing *** ///
 
 app.use('/', indexRouter);
 app.use('/api/notes', notesRouter);
+app.use('/users', usersRouter);
+
+// *** passport config *** ///
+
+var User = require('./app/models/users');
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 // *** error handling *** ///
 

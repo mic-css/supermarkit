@@ -25,6 +25,11 @@ angular
         controller: 'EditorCtrl',
         controllerAs: 'editor'
       })
+      .when('/register', {
+        templateUrl: '../views/templates/register.html',
+        controller: 'usersCtrl',
+        controllerAs: 'registration'
+      })
       .otherwise({
         redirectTo: '/notes'
       });

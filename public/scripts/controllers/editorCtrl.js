@@ -14,7 +14,6 @@ marked.setOptions({
 angular.module('markpad')
   .controller('EditorCtrl', ['$scope', function ($scope) {
     var self = this;
-
     $scope.aceLoaded = function (_editor) {
       var _session = _editor.getSession();
       var _renderer = _editor.renderer;
@@ -26,7 +25,7 @@ angular.module('markpad')
 
     self.source = '';
     self.result = '';
-
+    
     self.renderMd = function () {
       self.result = marked(self.source);
     };
