@@ -23,11 +23,12 @@ describe('Service: Auth', function () {
 
   describe('#login', function () {
     it('logs the user in if successful', function () {
-      $httpBackend.expectPOST('/users/login').respond(200, {status: 'Login successful'});
+      $httpBackend.expectPOST('/users/login').respond(200, {status: 'Logged in successfully'});
       authService.login(user.username, user.password);
 
       $httpBackend.flush();
       expect(authService.isLoggedIn()).toBe(true);
+      expect(authService.getUserStatus()).toBe(true);
     });
 
     it('sets isLoggedIn to false if login is unsuccessful', function () {
@@ -36,25 +37,27 @@ describe('Service: Auth', function () {
 
       $httpBackend.flush();
       expect(authService.isLoggedIn()).toBe(false);
+      expect(authService.getUserStatus()).toBe(false);
     });
   });
 
   describe('#logout', function () {
-    beforeEach(function () {
-      $httpBackend.expectPOST('/users/login').respond(200, {status: 'Login successful'});
-      authService.login('Incorrect', user.password);
-    });
-
     it('logs the user out', function () {
-      $httpBackend.expectGET('/users/logout').respond(200, {status: 'Logged out!'});
+      $httpBackend.expectGET('/users/logout').respond(200, {status: 'Logged out successfully'});
       authService.logout();
 
       $httpBackend.flush();
       expect(authService.isLoggedIn()).toBe(false);
+      expect(authService.getUserStatus()).toBe(false);
     });
   });
 
   describe('#signup', function () {
-    
+    it('sends a POST request with user credentials', function () {
+      $httpBackend.expectPOST('/users/signup').respond(200, {status: 'Signed up successfully'});
+      authService.signup(user.username, user.password);
+
+      $httpBackend.flush();
+    });
   });
 });

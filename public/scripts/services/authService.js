@@ -59,7 +59,21 @@ angular.module('markpad')
         });
     }
 
-    function signup() {
+    function signup(username, password) {
+      var deferred = $q.defer();
 
+      $http.post('/users/signup', {username: username, password: password})
+        .success(function (data, status) {
+          if (status === 200 & data.status) {
+            deferred.resolve();
+          } else {
+            deferred.reject();
+          }
+        })
+        .error(function (data) {
+          deferred.reject();
+        });
+
+      return deferred.promise;
     }
   }]);

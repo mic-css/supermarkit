@@ -32,12 +32,10 @@ describe('User', function() {
       .end(function (err, res) {
         res.should.be.json;
         res.should.have.status(200);
-        res.body.should.have.property('info');
-        res.body.info.should.equal('success');
+        res.body.info.should.equal('Signed up successfully');
         done();
       });
   });
-
 
   it('should log in an existing user', function (done) {
     chai.request(app)
@@ -46,8 +44,19 @@ describe('User', function() {
       .end(function (err, res) {
         res.should.be.json;
         res.should.have.status(200);
-        res.body.should.have.property('info');
-        res.body.info.should.equal('Login successful');
+        res.body.info.should.equal('Logged in successfully');
+        done();
+      });
+  });
+
+  it('should log out the current user', function (done) {
+    chai.request(app)
+      .get('/users/logout')
+      .send()
+      .end(function (err, res) {
+        res.should.be.json;
+        res.should.have.status(200);
+        res.body.info.should.equal('Logged out successfully');
         done();
       });
   });
@@ -58,7 +67,7 @@ describe('User', function() {
       .send(user)
       .end(function (err, res) {
         res.should.be.json;
-        res.should.have.status(500);
+        res.should.have.status(400);
         done();
       });
   });
