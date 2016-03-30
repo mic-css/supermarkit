@@ -15,22 +15,21 @@ angular.module('markpad')
   .controller('EditorCtrl', ['$scope', 'CurrentNote', function ($scope, CurrentNote) {
     var self = this;
 
-    $scope.aceLoaded = function (_editor) {
-      var _session = _editor.getSession();
-      var _renderer = _editor.renderer;
-      _editor.setValue();
-      _editor.setReadOnly(false);
-      _editor.focus();
-      _renderer.setShowGutter(false);
-    };
+    var currentNote = CurrentNote.getCurrentNoteContent();
 
-    self.source = '';
+    self.source = currentNote;
     self.result = '';
 
     self.renderMd = function () {
       self.result = marked(self.source);
     };
 
-    self.renderMd();
-
+    $scope.aceLoaded = function (_editor) {
+      var _renderer = _editor.renderer;
+      _editor.setValue(self.source);
+      _editor.setReadOnly(false);
+      _editor.focus();
+      _renderer.setShowGutter(false);
+      self.renderMd();
+    };
   }]);

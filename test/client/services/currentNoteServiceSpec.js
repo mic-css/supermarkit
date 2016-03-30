@@ -11,11 +11,13 @@ describe('Service: CurrentNote', function () {
 
   it('returns an empty object by default', function () {
     expect(currentNoteService.getCurrentNote()).toEqual(null);
+    expect(currentNoteService.getCurrentNoteContent()).toEqual('');
   });
 
   it('sets the current note', function () {
     note = {title: "Sample note", content: "*Some markdown*"};
     currentNoteService.setCurrentNote(note);
     expect(currentNoteService.getCurrentNote()).toEqual(note);
+    expect(currentNoteService.getCurrentNoteContent()).toEqual(note.content);
   });
 });

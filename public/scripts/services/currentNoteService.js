@@ -12,8 +12,13 @@ angular.module('markpad')
       return currentNote;
     };
 
+    var getCurrentNoteContent = function () {
+      return currentNote ? currentNote.content : '';
+    };
+
     return {
       setCurrentNote: setCurrentNote,
-      getCurrentNote: getCurrentNote
+      getCurrentNote: getCurrentNote,
+      getCurrentNoteContent: getCurrentNoteContent
     };
   });

@@ -10,6 +10,6 @@ describe('View single note', function () {
 
   it("shows a single note", function () {
     preview = element(by.id('md-view'));
-    expect(preview.getText()).toContain("Here's a quick markdown tutorial");
+    expect(preview.getText()).toContain("Here's a quick introduction to markdown");
   });
 });
