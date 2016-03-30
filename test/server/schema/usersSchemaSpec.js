@@ -23,8 +23,12 @@ describe('User', function() {
 
   it('should validate the username as present', function(done) {
     user = new User({ username: "", email: "test@test.com", password: "Password" });
+    user.should.respondTo('save');
     user.save(function(err) {
-      err.errors.username.message.should.equal('Username is required.');
+      console.log(err.errors.username.message);
+      err.should.exist;
+      console.log(err.errors.username.message.should.equal('Username is required.'));
+      console.log('Here kitty kitty');
     });
     done();
   });
