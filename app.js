@@ -12,7 +12,7 @@ var LocalStrategy = require('passport-local').Strategy;
 
 var indexRouter = require('./app/routes/indexRouter');
 var usersRouter = require('./app/routes/usersRouter');
-var notesController = require('./app/controllers/notesController');
+var notesRouter = require('./app/routes/notesRouter');
 
 
 var app = express();
@@ -57,7 +57,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // *** routing *** ///
 
 app.use('/', indexRouter);
-app.use('/api/notes', notesController);
+app.use('/api/notes', notesRouter);
 app.use('/users', usersRouter);
 
 
