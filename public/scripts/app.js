@@ -16,12 +16,12 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/signup', {
-        templateUrl: '../templates/signup.html',
+        templateUrl: '../views/templates/signup.html',
         controller: 'SignupCtrl',
         controllerAs: 'signupCtrl'
       })
       .when('/login', {
-        templateUrl: '../templates/login.html',
+        templateUrl: '../views/templates/login.html',
         controller: 'LoginCtrl',
         controllerAs: 'loginCtrl'
       })
