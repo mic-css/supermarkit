@@ -12,16 +12,4 @@ var userSchema = new Schema({
 
 userSchema.plugin(passportLocalMongoose);
 
-// this.create = function(req, res) {
-//   userSchema.name = req.body.name;
-//   userSchema.email = req.body.email;
-//   userSchema.password = req.body.password;
-//   userSchema.save(function(err){
-//     if (err) {
-//       res.send(err);
-//     }
-//     res.json({message: 'User saved.'});
-//   });
-// };
-
 module.exports = mongoose.model('User', userSchema);
