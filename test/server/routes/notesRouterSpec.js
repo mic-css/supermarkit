@@ -17,18 +17,23 @@ describe('Notes', function() {
   Note.collection.drop();
 
   var user = {username: "A username", email: "test@test.com", password: "Password"};
-  // User.register(new User({ username : user.username, email : user.email }), user.password, function(err, user) {});
+  app.request.user = new User({ username : user.username, email : user.email}), user.password;
+
+  var note = {title: "Of Mice and Men", content: "I remember about the rabbits, George", user: {type: app.request.user.id}};
+  User.register(new User({ username : user.username, email : user.email }), user.password, function(err, user) {});
+
+  app.request.note = new Note({ title: note.title, content: note.content, user: {type: user.type}});
+
   var agent = chai.request.agent(app);
+
   beforeEach(function(done){
     agent
       .post('/users/register')
       .send(user)
       .end();
 
-    note = new Note({
-      title: 'Note Title',
-      content: 'Example note body'
-    });
+    note = new Note({ title: note.title, content: note.content});
+
 
     note.save(function(err) {
       if (err) {
@@ -47,35 +52,30 @@ describe('Notes', function() {
 
   it('should return all notes on /api/notes GET', function (done) {
     agent
-      .post('/users/register')
-      .send(user)
-      .then(function() {
-        return agent
-          .get('/api/notes')
-          .end(function (err, res) {
-            res.should.have.status(200);
-            res.should.be.json;
-            console.log(res.body)
-            res.body.should.be.a('array');
-            done();
-          });
-      });
-  });
-
-  it('should return a note on /api/notes/:id GET', function (done) {
-    chai.request(app)
-      .get('/api/notes/' + note.id)
+      .get('/api/notes')
       .end(function (err, res) {
         res.should.have.status(200);
         res.should.be.json;
-        res.body.should.be.a('object');
-        res.body._id.should.equal(note.id);
-        res.body.title.should.equal('Note Title');
-        res.body.content.should.equal('Example note body');
+        res.body.should.be.a('array');
         done();
       });
   });
 
+  // it('should return a note on /api/notes/:userid GET', function (done) {
+  //   agent
+  //     console.log(app.request.user.id)
+  //     .get('/api/notes/' + app.request.user.id)
+  //     .end(function (err, res) {
+  //       res.should.have.status(200);
+  //       res.should.be.json;
+  //       res.body.should.be.a('object');
+  //       res.body._id.should.equal(note.id);
+  //       res.body.title.should.equal('Note Title');
+  //       res.body.content.should.equal('Example note body');
+  //       done();
+  //     });
+  // });
+  //
   it('should add a note on /api/notes POST', function (done) {
     var newNote = {
       'title': 'Note Title',
@@ -97,41 +97,37 @@ describe('Notes', function() {
         done();
       });
   });
-
-  it('should update a note on /api/notes/:id PUT', function (done) {
-    chai.request(app)
-    .get('/api/notes/'+note.id)
-    .end(function (err, res) {
-      chai.request(app)
-      .put('/api/notes/'+res.body._id)
-      .send({'content': 'Note updated'})
-      .end(function (err, res) {
-        res.should.have.status(200);
-        res.should.be.json;
-        res.body.should.have.property('UPDATED');
-        res.body.UPDATED.content.should.equal('Note updated');
-        done();
-      });
-    });
-  });
-
-  it('should delete a note on /api/notes/:id DELETE', function(done) {
-    chai.request(app)
-      .get('/api/notes/'+note.id)
-      .end(function (err, res) {
-        chai.request(app)
-          .delete('/api/notes/'+res.body._id)
-          .end(function (err, res) {
-            res.should.have.status(200);
-            res.should.be.json;
-            res.body.should.be.a('object');
-            res.body.should.have.property('DELETED');
-            res.body.DELETED.should.be.a('object');
-            res.body.DELETED.should.have.property('_id');
-            res.body.DELETED.title.should.equal(note.title);
-            res.body.DELETED.content.should.equal(note.content);
-            done();
-        });
-      });
-  });
+  //
+  // it('should update a note on /api/notes/:id PUT', function (done) {
+  //   agent
+  //     .put('/api/notes/'+res.body._id)
+  //     .send({'content': 'Note updated'})
+  //     .end(function (err, res) {
+  //       res.should.have.status(200);
+  //       res.should.be.json;
+  //       res.body.should.have.property('UPDATED');
+  //       res.body.UPDATED.content.should.equal('Note updated');
+  //       done();
+  //     });
+  // });
+  //
+  // it('should delete a note on /api/notes/:id DELETE', function(done) {
+  //   chai.request(app)
+  //     .get('/api/notes/'+note.id)
+  //     .end(function (err, res) {
+  //       chai.request(app)
+  //         .delete('/api/notes/'+res.body._id)
+  //         .end(function (err, res) {
+  //           res.should.have.status(200);
+  //           res.should.be.json;
+  //           res.body.should.be.a('object');
+  //           res.body.should.have.property('DELETED');
+  //           res.body.DELETED.should.be.a('object');
+  //           res.body.DELETED.should.have.property('_id');
+  //           res.body.DELETED.title.should.equal(note.title);
+  //           res.body.DELETED.content.should.equal(note.content);
+  //           done();
+  //         });
+  //     });
+  // });
 });

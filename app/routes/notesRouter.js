@@ -6,24 +6,22 @@ var mongoose = require('mongoose');
 var Note = require ('../models/notes');
 
 router.get('/', function (req, res) {
-    if (!req.user){
+  if (!req.user){
+    return res.status(401).json({'ERROR': "Login in order to view notes"});
+  }
 
-      return res.status(401).json({'ERROR': "Login in order to view notes"});
+  Note.find(function (err, notes) {
+    if (err) {
+      return res.json({'ERROR': err});
+    } else {
+      return res.json(notes);
     }
-
-    Note.find(function (err, notes) {
-      if (err) {
-        return res.json({'ERROR': err});
-      } else {
-        return res.json(notes);
-      }
-    });
-  })
+  });
+});
 
 router.post('/', function (req, res) {
     if (!req.user){
-      res.status(401).json({'ERROR': "Login in order to post a note"});
-      // res.status(401);
+      return res.status(401).json({'ERROR': "Login in order to post a note"});
     }
     var newNote = new Note({
       title: req.body.title,
@@ -37,39 +35,39 @@ router.post('/', function (req, res) {
         res.status(201).json({'SUCCESS': newNote});
       }
     });
-  });
+});
+
+// router.get('/:userId', function (req, res) {
+//     if (!req.user){
+//       res.status(401).json({'ERROR': "Login in order to post"});
+//     }
+// mongoose.model('notes').find({user: req.params.userId}, function(err, notes){
+//   mongoose.model('notes').populate(notes, {path: 'user'}, function(err, notes){
+//     res.send(notes);
+//       });
+//     });
+//   });
+
 
 router.get('/:userId', function (req, res) {
-    if (!req.user){
-      res.status(401).json({'ERROR': "Login in order to post"});
-      // res.status(401);
+  if (!req.user) {
+    res.status(401).json({'ERROR': "Login in order to view a note"});
+  }
+  mongoose.model('notes').find({user: req.params.userId}, function(err, notes) {
+    if (err) {
+      res.json({'ERROR': err});
+    } else {
+        mongoose.model('notes').populate(notes, {path: 'user'}, function(err, notes){
+          res.send(notes);
+        });
     }
-    mongoose.model('notes').find({user: req.params.userId}, function(err, notes){
-      mongoose.model('notes').populate(notes, {path: 'user'}, function(err, notes){
-        res.send(notes);
-      });
-    });
   });
+});
 
-
-router.get('/:id', function (req, res) {
-    if (!req.user){
-      res.status(401).json({'ERROR': "Login in order to view a note"});
-      // res.status(401);
-    }
-    Note.findById(req.params.id, function (err, note) {
-      if (err) {
-        res.json({'ERROR': err});
-      } else {
-        res.json(note);
-      }
-    });
-  });
 
 router.put('/:id', function (req, res) {
     if (!req.user){
       res.status(401).json({'ERROR': "Login in order to edit a note"});
-      // res.status(401);
     }
 
     Note.findByIdAndUpdate(req.params.id, {$set: req.body}, {new: true}, function (err, note) {
@@ -93,7 +91,7 @@ router.delete('/:id', function (req, res) {
         res.status(200).json({'DELETED': note});
       }
     });
-  });
+});
 
 
 module.exports = router;
