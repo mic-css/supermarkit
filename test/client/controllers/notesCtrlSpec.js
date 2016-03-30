@@ -1,7 +1,7 @@
 describe('Controller: NotesCtrl', function () {
   'use strict';
 
-  var NotesCtrl, mockNoteFactory;
+  var NotesCtrl, mockNoteFactory, mockCurrentNoteService;
   var mockNotes = [
     {
       "_id": "56f6d8cbd7c4711bae9abd52",
@@ -35,10 +35,22 @@ describe('Controller: NotesCtrl', function () {
 
     spyOn(mockNoteFactory, 'query').and.callThrough();
 
+    mockCurrentNoteService = {
+      setCurrentNote: {},
+      getCurrentNote: mockNotes[0]
+    };
+
+    spyOn(mockCurrentNoteService, 'setCurrentNote');
+
     $provide.factory('Note', function () {
       return mockNoteFactory;
     });
+
+    $provide.service('CurrentNote', function () {
+      return mockCurrentNoteService;
+    });
   }));
+
 
   beforeEach(inject(function ($controller, $rootScope) {
     NotesCtrl = $controller('NotesCtrl', {
@@ -52,5 +64,11 @@ describe('Controller: NotesCtrl', function () {
 
   it('should attach list of notes to the controller', function () {
     expect(NotesCtrl.notes.length).toBe(3);
+  });
+
+  it('should call currentNoteService.setCurrentNote with the correct parameter', function () {
+    NotesCtrl.setCurrent('testNote');
+
+    expect(mockCurrentNoteService.setCurrentNote).toHaveBeenCalledWith('testNote');
   });
 });

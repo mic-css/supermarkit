@@ -12,13 +12,13 @@ marked.setOptions({
 });
 
 angular.module('markpad')
-  .controller('EditorCtrl', ['$scope', function ($scope) {
+  .controller('EditorCtrl', ['$scope', 'CurrentNote', function ($scope, CurrentNote) {
     var self = this;
 
     $scope.aceLoaded = function (_editor) {
       var _session = _editor.getSession();
       var _renderer = _editor.renderer;
-      _editor.setValue()
+      _editor.setValue();
       _editor.setReadOnly(false);
       _editor.focus();
       _renderer.setShowGutter(false);
@@ -32,4 +32,5 @@ angular.module('markpad')
     };
 
     self.renderMd();
+
   }]);
