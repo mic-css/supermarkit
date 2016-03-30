@@ -31,7 +31,7 @@ describe('Notes', function() {
     });
   });
 
-  afterEach(function (done) {
+  after(function (done) {
     Note.collection.drop();
     done();
   });
