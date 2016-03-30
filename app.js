@@ -1,3 +1,5 @@
+'use strict';
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -11,8 +13,7 @@ var LocalStrategy = require('passport-local').Strategy;
 
 var indexRouter = require('./app/routes/indexRouter');
 var usersRouter = require('./app/routes/usersRouter');
-var notesController = require('./app/controllers/notesController');
-
+var notesRouter = require('./app/routes/notesRouter');
 
 var app = express();
 var db = process.env.MONGOLAB_URI || config.mongoURI[app.settings.env];
@@ -50,11 +51,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 // *** routing *** ///
 
 app.use('/', indexRouter);
-app.use('/api/notes', notesController);
+app.use('/api/notes', notesRouter);
 app.use('/users', usersRouter);
 
+// *** passport config *** ///
 
-// passport config
 var User = require('./app/models/users');
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
