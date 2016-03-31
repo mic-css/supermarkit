@@ -75,10 +75,10 @@ describe('User', function() {
       });
   });
 
-  it('should not allow a user to register without a username', function(done){
+  it('should not allow a user to signup without a username', function(done){
     user = {username: "", email: "test@test.com", password: "Password"};
     chai.request(app)
-      .post('/users/register')
+      .post('/users/signup')
       .send(user)
       .end(function (err, res) {
         res.should.be.json;
@@ -89,10 +89,10 @@ describe('User', function() {
       });
   });
 
-  it('should not allow a user to register without a password', function(done){
+  it('should not allow a user to signup without a password', function(done){
     user = {username: "Username2", email: "test@test.com", password: ""};
     chai.request(app)
-      .post('/users/register')
+      .post('/users/signup')
       .send(user)
       .end(function (err, res) {
         res.should.be.json;
