@@ -4,13 +4,7 @@ angular.module('markpad')
 
     var user = null;
 
-    return ({
-      isLoggedIn: isLoggedIn,
-      getUserStatus: getUserStatus,
-      login: login,
-      logout: logout,
-      signup: signup
-    });
+
 
     function isLoggedIn() {
       if (user) {
@@ -61,19 +55,27 @@ angular.module('markpad')
 
     function signup(username, password) {
       var deferred = $q.defer();
-
-      $http.post('/users/signup', {username: username, password: password})
+      $http.post('/users/signup', {username: username, email: "kjjsfkjs@jhjksd.com", password: password})
         .success(function (data, status) {
-          if (status === 200 & data.status) {
+          if (status === 200 && data.info) {
             deferred.resolve();
           } else {
             deferred.reject();
           }
         })
         .error(function (data) {
+
           deferred.reject();
         });
 
       return deferred.promise;
     }
+    return ({
+      isLoggedIn: isLoggedIn,
+      getUserStatus: getUserStatus,
+      login: login,
+      logout: logout,
+      signup: signup
+    });
+
   }]);

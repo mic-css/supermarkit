@@ -17,12 +17,12 @@ angular
       .when('/signup', {
         templateUrl: '../views/templates/signup.html',
         controller: 'SignupCtrl',
-        controllerAs: 'signupCtrl'
+        // controllerAs: 'signupCtrl'
       })
       .when('/login', {
         templateUrl: '../views/templates/login.html',
         controller: 'LoginCtrl',
-        controllerAs: 'loginCtrl'
+        // controllerAs: 'loginCtrl'
       })
       .when('/logout', {
         controller: 'LogoutCtrl',

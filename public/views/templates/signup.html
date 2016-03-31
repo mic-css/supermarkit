@@ -1,14 +1,17 @@
-<div ng-app="markpad", ng-controller="signUpCtrl">
-  <form>
-    <label for="username">
-      Username: <input type="text", ng-model="user.username">
-    </label>
-    <label for="password">Password:
-      Password: <input type="text", ng-model="user.password">
-    </label>
-    <label for="confirm">
-      Confirm password: <input type="text", ng-model="user.confirm">
-    </label>
-    <p><input type="submit", ng-click="submit()"></p>
+<div class="col-md-4">
+  <h1>Sign up</h1>
+  <div ng-show="error" class="alert alert-danger">{{errorMessage}}</div>
+  <form class="form" ng-submit="signup()">
+    <div class="form-group">
+      <label>Username</label>
+      <input type="text" class="form-control" name="username" ng-model="registerForm.username" required>
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+        <input type="password" class="form-control" name="password" ng-model="registerForm.password" required>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-default" ng-disabled="disabled">Sign up</button>
+      </div>
   </form>
 </div>
