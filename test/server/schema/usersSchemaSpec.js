@@ -44,4 +44,20 @@ describe('User', function() {
       done();
     });
   });
+
+  it('should validate the email address as being the correct format', function(done) {
+    user = new User({ username: "Testy McTestface", email: "test.test.com", password: "12345678" });
+    user.save(function(err) {
+      err.errors.email.message.should.equal('Please enter a correct email address.');
+      done();
+    });
+  });
+
+  it('should validate the password as present', function(done) {
+    user = new User({ username: "Testy McTestface", email: "test@test.com", password: "" });
+    user.save(function(err) {
+      err.errors.password.message.should.equal('Password is required.');
+      done();
+    });
+  });
 });

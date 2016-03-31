@@ -6,9 +6,15 @@ var passportLocalMongoose = require('passport-local-mongoose');
 
 var userSchema = new Schema({
   username  : { type: String, required: 'Username is required.',
-  minlength: [3, 'Username must be three characters or longer.'] },
-  email     : { type: String, required: 'Email is required.' },
-  password  : String
+                minlength: [3, 'Username must be three characters or longer.'] },
+  email     : { type: String, required: 'Email is required.',
+                validate: {
+                  validator: function(email) {
+                    return /\w+@\w+\.\w+/.test(email);
+                  },
+                  message: 'Please enter a correct email address.'
+                } },
+  password  : { type: String, required: 'Password is required.'}
 });
 
 userSchema.plugin(passportLocalMongoose);
