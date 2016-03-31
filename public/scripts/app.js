@@ -7,7 +7,6 @@ angular
     'ngAria',
     'ngCookies',
     'ngMessages',
-    'ngResource',
     'ngRoute',
     'ngSanitize',
     'ngTouch',
@@ -21,6 +20,11 @@ angular
         controllerAs: 'notesCtrl'
       })
       .when('/notes/new', {
+        templateUrl: '../views/templates/editor.html',
+        controller: 'EditorCtrl',
+        controllerAs: 'editor'
+      })
+      .when('/note', {
         templateUrl: '../views/templates/editor.html',
         controller: 'EditorCtrl',
         controllerAs: 'editor'
