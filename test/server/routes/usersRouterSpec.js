@@ -15,7 +15,7 @@ describe('User', function() {
   User.collection.drop();
 
   before(function (done) {
-    user = {username: "Username", email: "test@test.com", password: "Password"};
+    user = {username: "Username", email: "test@test.com", password: "Password1234"};
     User.register(new User({ username : user.username, email : user.email }), user.password, function(err, user) {});
     done();
   });

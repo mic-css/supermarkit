@@ -46,7 +46,7 @@ describe('User', function() {
   });
 
   it('should validate the email address as being the correct format', function(done) {
-    user = new User({ username: "Testy McTestface", email: "test.test.com", password: "12345678" });
+    user = new User({ username: "Testy McTestface", email: "test.test.com", password: "1234567890ab" });
     user.save(function(err) {
       err.errors.email.message.should.equal('Please enter a correct email address.');
       done();
@@ -57,6 +57,14 @@ describe('User', function() {
     user = new User({ username: "Testy McTestface", email: "test@test.com", password: "" });
     user.save(function(err) {
       err.errors.password.message.should.equal('Password is required.');
+      done();
+    });
+  });
+
+  it('should reject passwords less than twelve characters long', function(done) {
+    user = new User({ username: "Testy McTestface", email: "test@test.com", password: "1234" });
+    user.save(function(err) {
+      err.errors.password.message.should.equal('Password must be at least 12 characters long.');
       done();
     });
   });

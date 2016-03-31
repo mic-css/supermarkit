@@ -14,7 +14,8 @@ var userSchema = new Schema({
                   },
                   message: 'Please enter a correct email address.'
                 } },
-  password  : { type: String, required: 'Password is required.'}
+  password  : { type: String, required: 'Password is required.',
+                minlength: [12, 'Password must be at least 12 characters long.']}
 });
 
 userSchema.plugin(passportLocalMongoose);
