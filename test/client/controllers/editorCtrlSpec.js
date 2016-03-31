@@ -46,7 +46,7 @@ describe('Controller: EditorCtrl', function () {
     expect(EditorCtrl.preview).toContain('<strong>test</strong>');
   });
 
-  xit('should save a new Note on load', function () {
+  it('should save a new Note on load', function () {
     expect(mockNote.save).toHaveBeenCalled();
   });
 });

@@ -15,7 +15,20 @@ angular.module('markpad')
   .controller('EditorCtrl', ['$scope', '$timeout', 'CurrentNote', function ($scope, $timeout, CurrentNote) {
     var self = this;
     var timeout = null;
-    var saveUpdates;
+    self.note = CurrentNote.getCurrentNote();
+    self.preview = '';
+
+    var saveUpdates = function () {
+      if (self.note.hasOwnProperty('id')) {
+        self.note.$save(function (data) {
+          console.log(data);
+          self.note.id = data.body.id;
+        });
+      } else {
+        self.note.update({id: self.note.id});
+      }
+    };
+
     var debounceSaveUpdates = function (newVal, oldVal) {
       if (newVal !== oldVal) {
         if (timeout) {
@@ -24,10 +37,7 @@ angular.module('markpad')
         timeout = $timeout(saveUpdates, 1000);
       }
     };
-    $scope.$watch('self.note.content', debounceSaveUpdates);
 
-    self.note = CurrentNote.getCurrentNote();
-    self.preview = '';
 
     self.renderMd = function () {
       self.preview = marked(self.note.content);
@@ -42,5 +52,6 @@ angular.module('markpad')
       self.renderMd();
     };
 
+    $scope.$watch('self.note.content', debounceSaveUpdates);
 
   }]);
