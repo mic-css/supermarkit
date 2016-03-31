@@ -62,9 +62,11 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.use(new FacebookStrategy({
   clientID: '[FBID]',
   clientSecret: '[FBSECRET]',
-  callbackURL:
-  }, function(){
-    
+  callbackURL: '[CALLBACKURI]'
+}, function(accessToken, refreshToken, profile, done){
+    User.findOrCreate({ facebookId: profile.id }, function(err, user) {
+      return done(err, user);
+    });
   }));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
