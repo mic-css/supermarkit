@@ -31,4 +31,4 @@ $ npm run test-protractor
 
 ## Deployment
 
-This app is available on Heroku at: https://morning-everglades-35819.herokuapp.commands
+This app is available on Heroku at: <https://morning-everglades-35819.herokuapp.com>
