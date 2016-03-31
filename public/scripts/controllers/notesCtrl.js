@@ -1,8 +1,8 @@
 angular.module('markpad')
-  .controller('NotesCtrl', ['Note', 'CurrentNote', function (Note, CurrentNote) {
+  .controller('NotesCtrl', ['NoteFactory', 'CurrentNote', function (NoteFactory, CurrentNote) {
     'use strict';
     var self = this;
-
+    var Note = NoteFactory;
     self.notes = Note.query() || [];
 
     self.setCurrent = function (note) {

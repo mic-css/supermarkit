@@ -7,10 +7,12 @@ describe('Controller: EditorCtrl', function () {
     mockNote = {
       title: 'Example title',
       content: 'Example content',
-      save: function () {}
+      $save: function () {},
+      $update: function () {}
     };
 
-    spyOn(mockNote, 'save');
+    spyOn(mockNote, '$save');
+    spyOn(mockNote, '$update');
 
     mockCurrentNoteService = {
       getCurrentNote: function () {
@@ -47,6 +49,6 @@ describe('Controller: EditorCtrl', function () {
   });
 
   it('should save a new Note on load', function () {
-    expect(mockNote.save).toHaveBeenCalled();
+    expect(mockNote.$save).toHaveBeenCalled();
   });
 });
