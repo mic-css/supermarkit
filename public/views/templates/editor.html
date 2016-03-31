@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col s4">
     <div class="row">
-      <div class="editor" ui-ace="{ mode: 'markdown', theme: 'chrome', onLoad: aceLoaded }" ng-model="editor.source" ng-change="editor.renderMd()" style="height: 200px;"></div>
+      <div class="editor" ui-ace="{ mode: 'markdown', theme: 'chrome', onLoad: aceLoaded }" ng-model="editor.note.content" ng-change="editor.renderMd()" style="height: 200px;"></div>
     </div>
   </div>
-  <div id="md-view" class="col s4 flow-text" ng-bind-html="editor.result"></div>
+  <div id="md-view" class="col s4 flow-text" ng-bind-html="editor.preview"></div>
 </div>

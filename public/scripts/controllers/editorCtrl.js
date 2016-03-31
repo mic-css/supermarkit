@@ -12,24 +12,30 @@ marked.setOptions({
 });
 
 angular.module('markpad')
-  .controller('EditorCtrl', ['$scope', 'CurrentNote', function ($scope, CurrentNote) {
+  .controller('EditorCtrl', ['$scope', 'Note', 'CurrentNote', function ($scope, Note, CurrentNote) {
     var self = this;
+    self.note = new Note();
 
     var currentNote = CurrentNote.getCurrentNoteContent();
 
-    self.source = currentNote;
-    self.result = '';
+    self.note.content = currentNote;
+    self.preview = '';
+    console.log(self.note.content);
 
     self.renderMd = function () {
-      self.result = marked(self.source);
+      self.preview = marked(self.note.content);
     };
 
     $scope.aceLoaded = function (_editor) {
       var _renderer = _editor.renderer;
-      _editor.setValue(self.source);
+      _editor.setValue(self.note.content);
       _editor.setReadOnly(false);
       _editor.focus();
       _renderer.setShowGutter(false);
       self.renderMd();
     };
+
+    // save
+    // note.content = self.source
+    // note .save
   }]);

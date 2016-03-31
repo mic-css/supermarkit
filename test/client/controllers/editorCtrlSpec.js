@@ -24,13 +24,13 @@ describe('Controller: EditorCtrl', function () {
   }));
 
   it("should set source to the current note's content", function () {
-    expect(EditorCtrl.source).toEqual('Example content');
+    expect(EditorCtrl.note.content).toEqual('Example content');
   });
   // TODO: stub marked methods
 
-  it('should update the markdown result on input change', function () {
-    EditorCtrl.source = '**test**';
+  it('should update the markdown preview on input change', function () {
+    EditorCtrl.note.content = '**test**';
     EditorCtrl.renderMd();
-    expect(EditorCtrl.result).toContain('<strong>test</strong>');
+    expect(EditorCtrl.preview).toContain('<strong>test</strong>');
   });
 });
