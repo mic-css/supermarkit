@@ -1,3 +1,5 @@
+'use strict';
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -13,7 +15,6 @@ var LocalStrategy = require('passport-local').Strategy;
 var indexRouter = require('./app/routes/indexRouter');
 var usersRouter = require('./app/routes/usersRouter');
 var notesRouter = require('./app/routes/notesRouter');
-
 
 var app = express();
 var db = process.env.MONGOLAB_URI || config.mongoURI[app.settings.env];
@@ -60,17 +61,9 @@ app.use('/', indexRouter);
 app.use('/api/notes', notesRouter);
 app.use('/users', usersRouter);
 
-// Authentication Check
-app.use(function isAuthenticated(req, res, next){
-  if (req.user.authenticated) {
-    next();
-  } else {
-    res.redirect('/');
-  }
-});
 
+// *** passport config *** ///
 
-// passport config
 var User = require('./app/models/users');
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());

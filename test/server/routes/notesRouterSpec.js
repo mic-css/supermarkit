@@ -48,6 +48,7 @@ describe('Notes', function() {
     done();
   });
 
+
   it('should return all notes on /api/notes GET', function (done) {
     agent
       .get('/api/notes')
@@ -80,6 +81,7 @@ describe('Notes', function() {
         done();
       });
   });
+});
 
   // BELOW ARE THE ABANDONED TESTS, I SWEATED, I LOST MY MIND, THEY DID NOT PASS.
 
@@ -129,4 +131,3 @@ describe('Notes', function() {
   //         });
   //     });
   // });
-});
