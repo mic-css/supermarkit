@@ -65,8 +65,23 @@ passport.use(new FacebookStrategy({
   clientSecret: process.env.FB_SECRET,
   callbackURL: process.env.CALLBACK_URI
 }, function(accessToken, refreshToken, profile, done){
-    User.findOrCreate({ facebookId: profile.id }, function(err, user) {
-      return done(err, user);
+    console.log(User);
+    User.findOne({ 'id': profile.id }, function(err, user) {
+      if (err) {
+        return done(err, user);
+      }
+      if (user) {
+        return done(null, user);
+      } else {
+        var newUser = new User({ username: profile.name.givenName + '-' + profile.name.familyName,
+                                email: profile.emails[0].value});
+        newUser.save(function(err) {
+          if (err) {
+            throw err;
+          }
+          return done(null, newUser);
+        });
+      }
     });
   }));
 passport.serializeUser(User.serializeUser());
