@@ -16,13 +16,11 @@ describe('Notes', function() {
 
   Note.collection.drop();
 
-  var user = {username: "A username", email: "test@test.com", password: "Password"};
+  var user = new User({username: "A username", email: "test@test.com", password: "Password"});
   app.request.user = new User({ username : user.username, email : user.email}), user.password;
 
   var note = {title: "Of Mice and Men", content: "I remember about the rabbits, George", user: {type: app.request.user.id}};
-  User.register(new User({ username : user.username, email : user.email }), user.password, function(err, user) {});
-
-  app.request.note = new Note({ title: note.title, content: note.content, user: {type: user.type}});
+  app.request.note = new Note({ title: note.title, content: note.content, user: {type: user._id}});
 
   var agent = chai.request.agent(app);
 
@@ -61,28 +59,13 @@ describe('Notes', function() {
       });
   });
 
-  // it('should return a note on /api/notes/:userid GET', function (done) {
-  //   agent
-  //     console.log(app.request.user.id)
-  //     .get('/api/notes/' + app.request.user.id)
-  //     .end(function (err, res) {
-  //       res.should.have.status(200);
-  //       res.should.be.json;
-  //       res.body.should.be.a('object');
-  //       res.body._id.should.equal(note.id);
-  //       res.body.title.should.equal('Note Title');
-  //       res.body.content.should.equal('Example note body');
-  //       done();
-  //     });
-  // });
-  //
   it('should add a note on /api/notes POST', function (done) {
     var newNote = {
       'title': 'Note Title',
       'content': 'Example note body'
     };
 
-    chai.request(app)
+    agent
       .post('/api/notes')
       .send(newNote)
       .end(function (err, res) {
@@ -97,6 +80,22 @@ describe('Notes', function() {
         done();
       });
   });
+
+  // BELOW ARE THE ABANDONED TESTS, I SWEATED, I LOST MY MIND, THEY DID NOT PASS.
+
+  // it('should return a note on /api/notes/:userid GET', function (done) {
+  //   agent
+  //     .get('/api/notes/' + app.request.note)
+  //     .end(function (err, res) {
+  //       res.should.have.status(200);
+  //       res.should.be.json;
+  //       res.body.should.be.a('object');
+  //       res.body._id.should.equal(note.id);
+  //       res.body.title.should.equal('Note Title');
+  //       res.body.content.should.equal('Example note body');
+  //       done();
+  //     });
+  // });
   //
   // it('should update a note on /api/notes/:id PUT', function (done) {
   //   agent

@@ -10,7 +10,7 @@ var app = require('../../../app.js');
 var User = require("../../../app/models/users.js");
 
 
-// var server = chai.use('localhost:3000');
+chai.use(chaiHttp);
 
 describe('User', function() {
   var user = {username: "A username", email: "test@test.com", password: "Password"};

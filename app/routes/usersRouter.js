@@ -11,7 +11,6 @@ router.post('/register', function(req, res) {
         if (err) {
           res.status(500).json({info: err});
         }
-
         passport.authenticate('local')(req, res, function () {
             res.status(200).json({info: "success"});
         });
@@ -39,5 +38,6 @@ router.get('/logout', function(req, res) {
     req.logout();
     res.status(200).json({status: 'Logged out!'});
 });
+
 
 module.exports = router;

@@ -60,6 +60,15 @@ app.use('/', indexRouter);
 app.use('/api/notes', notesRouter);
 app.use('/users', usersRouter);
 
+// Authentication Check
+app.use(function isAuthenticated(req, res, next){
+  if (req.user.authenticated) {
+    next();
+  } else {
+    res.redirect('/');
+  }
+});
+
 
 // passport config
 var User = require('./app/models/users');

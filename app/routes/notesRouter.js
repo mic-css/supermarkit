@@ -5,11 +5,17 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var Note = require ('../models/notes');
 
-router.get('/', function (req, res) {
-  if (!req.user){
-    return res.status(401).json({'ERROR': "Login in order to view notes"});
-  }
+function loggedIn(req, res, next) {
+    if (req.user) {
+        next();
+    } else {
+        res.status(401);
+        res.redirect('/');
+    }
+};
 
+
+router.get('/', loggedIn, function (req, res) {
   Note.find(function (err, notes) {
     if (err) {
       return res.json({'ERROR': err});
@@ -19,10 +25,7 @@ router.get('/', function (req, res) {
   });
 });
 
-router.post('/', function (req, res) {
-    if (!req.user){
-      return res.status(401).json({'ERROR': "Login in order to post a note"});
-    }
+router.post('/', loggedIn, function (req, res) {
     var newNote = new Note({
       title: req.body.title,
       content: req.body.content,
@@ -37,61 +40,41 @@ router.post('/', function (req, res) {
     });
 });
 
-// router.get('/:userId', function (req, res) {
-//     if (!req.user){
-//       res.status(401).json({'ERROR': "Login in order to post"});
-//     }
-// mongoose.model('notes').find({user: req.params.userId}, function(err, notes){
-//   mongoose.model('notes').populate(notes, {path: 'user'}, function(err, notes){
-//     res.send(notes);
-//       });
-//     });
-//   });
 
-
-router.get('/:userId', function (req, res) {
-  if (!req.user) {
-    res.status(401).json({'ERROR': "Login in order to view a note"});
-  }
-  mongoose.model('notes').find({user: req.params.userId}, function(err, notes) {
-    if (err) {
-      res.json({'ERROR': err});
-    } else {
+router.get('/:userId', loggedIn, function (req, res) {
+    mongoose.model('notes').find({user: req.params.userId}, function(err, notes) {
+      if (req.user._id.toString() !== req.params.userId) {
+        res.json({'ERROR': "THESE ARE NOT YOUR NOTES"});
+      } else {
         mongoose.model('notes').populate(notes, {path: 'user'}, function(err, notes){
           res.send(notes);
         });
-    }
-  });
+      }
+    });
 });
 
 
-router.put('/:id', function (req, res) {
-    if (!req.user){
-      res.status(401).json({'ERROR': "Login in order to edit a note"});
-    }
-
+router.put('/:userId/:id', loggedIn, function (req, res) {
     Note.findByIdAndUpdate(req.params.id, {$set: req.body}, {new: true}, function (err, note) {
-      if (err) {
-        res.json({'ERROR': err});
-        res.status(401);
-      } else {
+      if (req.user._id.toString() === req.params.userId) {
         res.status(200).json({'UPDATED': note});
+      } else {
+        res.json({'ERROR': 'THIS IS NOT YOUR NOTE TO EDIT'});
+        res.status(401);
       }
     });
 });
 
-router.delete('/:id', function (req, res) {
-    if (!req.user){
-      res.status(401).json({'ERROR': "Login in order to delete a note"});
-    }
+router.delete('/:userId/:id', loggedIn, function (req, res) {
     Note.findByIdAndRemove(req.params.id, function (err, note) {
-      if (err) {
-        res.json({'ERROR': err});
-      } else {
+      if (req.user._id.toString() === req.params.userId) {
         res.status(200).json({'DELETED': note});
+      } else {
+        res.json({'ERROR': 'THIS IS NOT YOUR NOTE TO DELETE'});
       }
     });
 });
+
 
 
 module.exports = router;
