@@ -1,4 +1,4 @@
-<div ng-app="markpad", ng-controller="signUpCtrl">
+<div ng-app="markpad", ng-controller="registration">
   <form>
     <label for="username">
       Username: <input type="text", ng-model="user.username">
@@ -11,4 +11,8 @@
     </label>
     <p><input type="submit", ng-click="submit()"></p>
   </form>
+
+</div>
+<div ng-app="markpad", ng-controller="registration">
+  <a href="/users/auth/facebook">Login with Facebook</a>
 </div>

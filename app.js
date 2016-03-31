@@ -1,4 +1,5 @@
 'use strict';
+require('dotenv').config();
 
 var express = require('express');
 var path = require('path');
@@ -60,9 +61,9 @@ app.use('/users', usersRouter);
 var User = require('./app/models/users');
 passport.use(new LocalStrategy(User.authenticate()));
 passport.use(new FacebookStrategy({
-  clientID: '[FBID]',
-  clientSecret: '[FBSECRET]',
-  callbackURL: '[CALLBACKURI]'
+  clientID: process.env.FB_ID,
+  clientSecret: process.env.FB_SECRET,
+  callbackURL: process.env.CALLBACK_URI
 }, function(accessToken, refreshToken, profile, done){
     User.findOrCreate({ facebookId: profile.id }, function(err, user) {
       return done(err, user);

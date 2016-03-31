@@ -40,13 +40,13 @@ router.route('/login')
     })(req, res, next);
   });
 
-router.route('/login/facebook',
+router.get('/auth/facebook',
   passport.authenticate('facebook', { scope: 'email' }
 ));
 
-router.route('/login/facebook/callback',
+router.get('/auth/facebook/callback',
   passport.authenticate('facebook', {
-    successRedirect: '/notes',
+    successRedirect: '/api/notes',
     failureRedirect: '/login'
   })
 );
