@@ -14,13 +14,9 @@ marked.setOptions({
 angular.module('markpad')
   .controller('EditorCtrl', ['$scope', 'Note', 'CurrentNote', function ($scope, Note, CurrentNote) {
     var self = this;
-    self.note = new Note();
 
-    var currentNote = CurrentNote.getCurrentNoteContent();
-
-    self.note.content = currentNote;
+    self.note = CurrentNote.getCurrentNote();
     self.preview = '';
-    console.log(self.note.content);
 
     self.renderMd = function () {
       self.preview = marked(self.note.content);

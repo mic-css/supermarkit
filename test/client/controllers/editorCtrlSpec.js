@@ -1,25 +1,44 @@
 describe('Controller: EditorCtrl', function () {
   'use strict';
 
-  var EditorCtrl, mockCurrentNoteService;
+  var $scope, $httpBackend, EditorCtrl, mockNoteFactory, mockNote, mockCurrentNoteService;
 
   beforeEach(module('markpad', function ($provide) {
+    mockNote = {
+      title: 'Example title',
+      content: 'Example content',
+      save: function () {}
+    };
+
+    mockNoteFactory = function () {
+      return mockNote;
+    };
+
+    spyOn(mockNote, 'save');
+
+    $provide.factory('Note', function () {
+      return mockNoteFactory;
+    });
+
     mockCurrentNoteService = {
-      getCurrentNoteContent: function() {
-        return 'Example content';
+      getCurrentNote: function () {
+        return mockNote;
       }
     };
 
-    spyOn(mockCurrentNoteService, 'getCurrentNoteContent').and.callThrough();
+    spyOn(mockCurrentNoteService, 'getCurrentNote').and.callThrough();
 
     $provide.service('CurrentNote', function () {
       return mockCurrentNoteService;
     });
   }));
 
-  beforeEach(inject(function ($controller, $rootScope) {
+  beforeEach(inject(function ($controller, $rootScope, _$httpBackend_) {
+    $scope        = $rootScope;
+    $httpBackend  = _$httpBackend_;
+
     EditorCtrl = $controller('EditorCtrl', {
-      $scope: $rootScope
+      $scope: $scope
     });
   }));
 
@@ -32,5 +51,9 @@ describe('Controller: EditorCtrl', function () {
     EditorCtrl.note.content = '**test**';
     EditorCtrl.renderMd();
     expect(EditorCtrl.preview).toContain('<strong>test</strong>');
+  });
+
+  xit('should save a new Note on load', function () {
+    expect(mockNote.save).toHaveBeenCalled();
   });
 });
