@@ -5809,5 +5809,39 @@ button.close {
 @media print {
   .hidden-print {
     display: none !important; } }
+#test {
+  background-image: url("http://www.angry-frog.com/angry/wp-content/uploads/2014/10/cover-background-1400w.jpg"); }
+
+#footer {
+  position: absolute;
+  bottom: 10px;
+  width: 50%; }
+
+.row-fluid {
+  height: 100%; }
+
+.column:before, .column:after {
+  content: "";
+  display: table; }
+
+.column:after {
+  clear: both; }
+
+.column {
+  height: 100%;
+  overflow: auto; }
+
+.box {
+  bottom: 0;
+  /* increase for footer use */
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 40px;
+  overflow: scroll;
+  height: 500px; }
+
+.full {
+  width: 100%; }
 
 /*# sourceMappingURL=main.css.map */
