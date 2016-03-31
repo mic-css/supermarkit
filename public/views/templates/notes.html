@@ -1,6 +1,6 @@
 <ul id="notes">
   <li class="note" ng-repeat="note in notesCtrl.notes">
-    <a href="#/note" class="title" ng-click='notesCtrl.setCurrent(note)'>{{note.title}}</a>
+    <a href="#/notes/new" class="title" ng-click='notesCtrl.setCurrent(note)'>{{note.title}}</a>
     <p class="preview">{{note.content}}</p>
    </li>
 </ul>
