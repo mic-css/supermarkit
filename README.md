@@ -28,3 +28,7 @@ $ npm run start-test
 $ npm run test-protractor
 ```
 * To run the entire suite, ensure you have `webdriver-manager` and the `test` server running in the background as above, and run `npm run test-everything`
+
+## Deployment
+
+This app is available on Heroku at: https://morning-everglades-35819.herokuapp.commands
