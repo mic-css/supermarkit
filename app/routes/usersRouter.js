@@ -13,7 +13,7 @@ router.route('/register')
         return res.status(400).json({error: err});
       }
 
-      passport.authenticate('local')(req, res, function () {
+      passport.authenticate('local', 'passport-facebook')(req, res, function () {
         return res.status(200).json({info: "success"});
       });
     });
@@ -39,6 +39,17 @@ router.route('/login')
       });
     })(req, res, next);
   });
+
+router.route('/login/facebook',
+  passport.authenticate('facebook', { scope: 'email' }
+));
+
+router.route('/login/facebook/callback',
+  passport.authenticate('facebook', {
+    successRedirect: '/notes',
+    failureRedirect: '/login'
+  })
+);
 
 router.route('/logout')
   .get(function(req, res) {

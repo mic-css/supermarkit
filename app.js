@@ -9,7 +9,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var config = require('./_config');
 var passport = require('passport'),
-    FacebookStrategy = require('passport-facebook');
+    FacebookStrategy = require('passport-facebook').Strategy;
 var LocalStrategy = require('passport-local').Strategy;
 
 var indexRouter = require('./app/routes/indexRouter');
