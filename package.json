@@ -64,6 +64,7 @@
     "mongoose": "^4.4.9",
     "node-mocks-http": "^1.5.2",
     "passport": "^0.3.2",
+    "passport-facebook": "^2.1.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^1.0.0",
     "phantomjs-prebuilt": "^2.1.6",

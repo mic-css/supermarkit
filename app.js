@@ -8,7 +8,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var config = require('./_config');
-var passport = require('passport');
+var passport = require('passport'),
+    FacebookStrategy = require('passport-facebook');
 var LocalStrategy = require('passport-local').Strategy;
 
 var indexRouter = require('./app/routes/indexRouter');
@@ -58,6 +59,13 @@ app.use('/users', usersRouter);
 
 var User = require('./app/models/users');
 passport.use(new LocalStrategy(User.authenticate()));
+passport.use(new FacebookStrategy({
+  clientID: '[FBID]',
+  clientSecret: '[FBSECRET]',
+  callbackURL:
+  }, function(){
+    
+  }));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
