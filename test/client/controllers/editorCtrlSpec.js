@@ -1,7 +1,7 @@
 describe('Controller: EditorCtrl', function () {
   'use strict';
 
-  var $scope, $httpBackend, EditorCtrl, mockNoteFactory, mockNote, mockCurrentNoteService;
+  var $scope, $httpBackend, EditorCtrl, mockNote, mockCurrentNoteService;
 
   beforeEach(module('markpad', function ($provide) {
     mockNote = {
@@ -10,15 +10,7 @@ describe('Controller: EditorCtrl', function () {
       save: function () {}
     };
 
-    mockNoteFactory = function () {
-      return mockNote;
-    };
-
     spyOn(mockNote, 'save');
-
-    $provide.factory('Note', function () {
-      return mockNoteFactory;
-    });
 
     mockCurrentNoteService = {
       getCurrentNote: function () {
@@ -42,11 +34,12 @@ describe('Controller: EditorCtrl', function () {
     });
   }));
 
-  it("should set source to the current note's content", function () {
+  it('should set source to the current note\'s content', function () {
+    expect(mockCurrentNoteService.getCurrentNote).toHaveBeenCalled();
     expect(EditorCtrl.note.content).toEqual('Example content');
   });
-  // TODO: stub marked methods
 
+  // TODO: stub marked methods
   it('should update the markdown preview on input change', function () {
     EditorCtrl.note.content = '**test**';
     EditorCtrl.renderMd();

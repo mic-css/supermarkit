@@ -12,7 +12,7 @@ marked.setOptions({
 });
 
 angular.module('markpad')
-  .controller('EditorCtrl', ['$scope', 'Note', 'CurrentNote', function ($scope, Note, CurrentNote) {
+  .controller('EditorCtrl', ['$scope', 'CurrentNote', function ($scope, CurrentNote) {
     var self = this;
 
     self.note = CurrentNote.getCurrentNote();
@@ -31,7 +31,5 @@ angular.module('markpad')
       self.renderMd();
     };
 
-    // save
-    // note.content = self.source
-    // note .save
+
   }]);
