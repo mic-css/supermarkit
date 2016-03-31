@@ -12,8 +12,19 @@ marked.setOptions({
 });
 
 angular.module('markpad')
-  .controller('EditorCtrl', ['$scope', 'CurrentNote', function ($scope, CurrentNote) {
+  .controller('EditorCtrl', ['$scope', '$timeout', 'CurrentNote', function ($scope, $timeout, CurrentNote) {
     var self = this;
+    var timeout = null;
+    var saveUpdates;
+    var debounceSaveUpdates = function (newVal, oldVal) {
+      if (newVal !== oldVal) {
+        if (timeout) {
+          $timeout.cancel(timeout);
+        }
+        timeout = $timeout(saveUpdates, 1000);
+      }
+    };
+    $scope.$watch('self.note.content', debounceSaveUpdates);
 
     self.note = CurrentNote.getCurrentNote();
     self.preview = '';
