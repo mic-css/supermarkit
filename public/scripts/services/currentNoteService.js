@@ -2,7 +2,7 @@ angular.module('markpad')
   .service('CurrentNote', function () {
     'use strict';
 
-    var currentNote = null;
+    var currentNote = {title: '', content: ''};
 
     var setCurrentNote = function (note) {
       currentNote = note;
@@ -12,13 +12,8 @@ angular.module('markpad')
       return currentNote;
     };
 
-    var getCurrentNoteContent = function () {
-      return currentNote ? currentNote.content : '';
-    };
-
     return {
       setCurrentNote: setCurrentNote,
-      getCurrentNote: getCurrentNote,
-      getCurrentNoteContent: getCurrentNoteContent
+      getCurrentNote: getCurrentNote
     };
   });

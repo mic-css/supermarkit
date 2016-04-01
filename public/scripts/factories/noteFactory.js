@@ -1,8 +1,9 @@
 angular.module('markpad')
-  .factory('Note', function ($resource) {
+  .factory('NoteFactory', function ($resource) {
     'use strict';
-    return $resource('/api/notes/:id', { id: '@_id' }, {
-      update: {
+
+    return $resource('/api/notes/:id', null, {
+      'update': {
         method: 'PUT'
       }
     });
