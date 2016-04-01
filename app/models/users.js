@@ -18,6 +18,6 @@ var userSchema = new Schema({
                 minlength: [12, 'Password must be at least 12 characters long.']}
 });
 
-userSchema.plugin(passportLocalMongoose);
+// userSchema.plugin(passportLocalMongoose);
 
 module.exports = mongoose.model('User', userSchema);
