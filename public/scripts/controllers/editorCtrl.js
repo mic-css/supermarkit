@@ -23,6 +23,12 @@ angular.module('markpad')
       self.note = CurrentNote.getCurrentNote();
       $scope.aceLoaded = function (_editor) {
         var _renderer = _editor.renderer;
+        _editor.getSession().setMode('ace/mode/markdown');
+        _editor.setTheme('ace/theme/markdown');
+        _editor.getSession().setUseWrapMode(true);
+        _editor.setShowPrintMargin(false);
+        
+
         _editor.setValue(self.note.content);
         _editor.setFontSize(15);
         _editor.setReadOnly(false);
