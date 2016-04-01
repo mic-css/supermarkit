@@ -14,6 +14,12 @@ angular
   ])
   .config(function ($routeProvider) {
     $routeProvider
+      .when('/', {
+        templateUrl: '../views/templates/home.html'
+      })
+      .when('/login', {
+        templateUrl: '../views/templates/login.html'
+      })
       .when('/notes', {
         templateUrl: '../views/templates/notes.html',
         controller: 'NotesCtrl',
