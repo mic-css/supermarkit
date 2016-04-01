@@ -5900,8 +5900,7 @@ html, body {
       word-wrap: break-word; }
 
 .editor, #md-view {
-  width: 50%;
-  height: 100%; }
+  width: 50%; }
 
 .editor {
   margin-top: 20px;
@@ -5910,6 +5909,7 @@ html, body {
 #md-view {
   padding-top: 20px;
   border-left: 1px solid rgba(173, 173, 173, 0.3);
-  padding-left: 10px; }
+  padding-left: 10px;
+  overflow: scroll; }
 
 /*# sourceMappingURL=main.css.map */

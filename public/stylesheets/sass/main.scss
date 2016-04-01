@@ -112,7 +112,6 @@ html, body {
 
 .editor, #md-view {
   width: 50%;
-  height: 100%;
 }
 
 .editor {
@@ -124,4 +123,5 @@ html, body {
   padding-top: 20px;
   border-left: 1px solid rgba(173, 173, 173, .3);
   padding-left: 10px;
+  overflow: scroll;
 }
