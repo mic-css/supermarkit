@@ -2,7 +2,7 @@
 
 var express = require('express');
 var path = require('path');
-var passport = require('passport');
+// var passport = require('passport');
 var User = require('../models/users.js');
 var router = express.Router();
 
@@ -13,32 +13,43 @@ router.route('/register')
         return res.status(400).json({error: err});
       }
 
-      passport.authenticate('local')(req, res, function () {
-        return res.status(200).json({info: "success"});
-      });
+      // passport.authenticate('local', 'passport-facebook')(req, res, function () {
+        // return res.status(200).json({info: "success"});
+      // });
     });
   });
 
 router.route('/login')
   .post(function(req, res, next) {
-    passport.authenticate('local', function(err, user, info) {
-      if (err) {
-        return next(err);
-      }
-
-      if (!user) {
-        return res.status(401).json({err: info});
-      }
-
-      req.logIn(user, function(err) {
-        if (err) {
-          return res.status(500).json({err: 'Could not log in user'});
-        }
-
-        res.status(200).json({info: 'Login Successful'});
-      });
-    })(req, res, next);
+    // passport.authenticate('local', function(err, user, info) {
+      // if (err) {
+      //   return next(err);
+      // }
+      //
+      // if (!user) {
+      //   return res.status(401).json({err: info});
+      // }
+      //
+      // req.logIn(user, function(err) {
+      //   if (err) {
+      //     return res.status(500).json({err: 'Could not log in user'});
+      //   }
+      //
+      //   res.status(200).json({info: 'Login Successful'});
+      // });
+    // })(req, res, next);
   });
+
+// router.get('/auth/facebook',
+//   // passport.authenticate('facebook', { scope: 'email' }
+// ));
+
+// router.get('/auth/facebook/callback',
+//   // passport.authenticate('facebook', {
+//   //   successRedirect: '/api/notes',
+//   //   failureRedirect: '/users/login'
+//   // })
+// );
 
 router.route('/logout')
   .get(function(req, res) {
