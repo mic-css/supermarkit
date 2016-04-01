@@ -5,10 +5,6 @@ html, body {
   height: 100%;
 }
 
-li {
-  list-style: none;
-}
-
 #jumbo {
   position: relative;
   color: white;
@@ -69,6 +65,20 @@ li {
   margin-top: 65px;
 }
 
+.editor-wrapper {
+  position: absolute;
+  top: 50px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0 15px;
+  display: flex;
+}
+
+#notes li {
+  list-style: none;
+}
+
 .note {
   padding: 15px;
   margin: 20px;
@@ -98,4 +108,20 @@ li {
       word-wrap: break-word;
     }
   }
+}
+
+.editor, #md-view {
+  width: 50%;
+  height: 100%;
+}
+
+.editor {
+  margin-top: 20px;
+  padding-right: 10px;
+}
+
+#md-view {
+  padding-top: 20px;
+  border-left: 1px solid rgba(173, 173, 173, .3);
+  padding-left: 10px;
 }
