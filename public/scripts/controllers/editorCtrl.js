@@ -12,7 +12,7 @@ marked.setOptions({
 });
 
 angular.module('markpad')
-  .controller('EditorCtrl', ['$scope', '$rootScope', '$timeout', 'NoteFactory', 'CurrentNote', function ($scope, $rootScope, $timeout, NoteFactory, CurrentNote) {
+  .controller('EditorCtrl', ['$scope', '$timeout', 'NoteFactory', 'CurrentNote', function ($scope, $timeout, NoteFactory, CurrentNote) {
     var self = this;
 
     self.note = {title: '', content: ''};
@@ -22,9 +22,12 @@ angular.module('markpad')
       self.note = CurrentNote.getCurrentNote();
       $scope.aceLoaded = function (_editor) {
         var _renderer = _editor.renderer;
+        _editor.getSession().setMode('ace/mode/markdown');
         _editor.setTheme('ace/theme/markdown');
         _editor.getSession().setUseWrapMode(true);
         _editor.setShowPrintMargin(false);
+        
+
         _editor.setValue(self.note.content);
         _editor.setReadOnly(false);
         _editor.focus();
