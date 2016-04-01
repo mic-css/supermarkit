@@ -5846,15 +5846,11 @@ html, body {
   border-radius: 10px 10px 10px 10px; }
   .input-group h2 {
     margin-top: 10px; }
-  .input-group input[type="text"] {
+  .input-group input[type="text"], .input-group input[type="password"] {
     margin-bottom: 15px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px; }
-
-.input-group {
-  background-color: white;
-  padding: 15px, 20px; }
 
 .footer {
   color: white;
