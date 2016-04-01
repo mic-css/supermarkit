@@ -20,7 +20,6 @@ angular.module('markpad')
 
     function init() {
       self.note = CurrentNote.getCurrentNote();
-      console.log(self.note);
       $scope.aceLoaded = function (_editor) {
         var _renderer = _editor.renderer;
         _editor.setValue(self.note.content);
@@ -34,6 +33,8 @@ angular.module('markpad')
     }
 
     self.saveUpdates = function () {
+      self.note.title = self.note.content.split('\n')[0];
+      console.log(self.note.title);
       if (!self.note._id && (self.note.title !== '' || self.note.content !== '')) {
         NoteFactory.save(self.note, function (res) {
           console.log('saved');
