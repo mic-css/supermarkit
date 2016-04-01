@@ -17,6 +17,7 @@ angular.module('markpad')
 
     self.note = {title: '', content: ''};
     self.preview = '';
+    var saving = false;
 
     function init() {
       self.note = CurrentNote.getCurrentNote();
@@ -34,15 +35,17 @@ angular.module('markpad')
 
     self.saveUpdates = function () {
       self.note.title = self.note.content.split('\n')[0];
-      console.log(self.note.title);
-      if (!self.note._id && (self.note.title !== '' || self.note.content !== '')) {
+
+      if (!self.note._id && self.note.title !== '' && saving === false) {
+        saving = true;
         NoteFactory.save(self.note, function (res) {
-          console.log('saved');
           self.note._id = res.SUCCESS._id;
+          saving = false;
         });
-      } else if (self.note.title !== '' || self.note.content !== '') {
+      } else if (self.note.title !== '' && saving === false) {
+        saving = true;
         NoteFactory.update({id: self.note._id}, self.note, function (res) {
-          console.log(res);
+          saving = false;
         });
       }
     };

@@ -9,7 +9,9 @@ angular.module('markpad')
     };
 
     var getCurrentNote = function () {
-      return currentNote;
+      var note = currentNote;
+      currentNote = {title: '', content: ''};
+      return note;
     };
 
     return {

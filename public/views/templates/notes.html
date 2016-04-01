@@ -1,6 +1,30 @@
-<ul id="notes">
-  <li class="note" ng-repeat="note in notesCtrl.notes | orderBy:'created_at':true">
-    <a href="#/note" class="title" ng-click='notesCtrl.setCurrent(note)'>{{note.title}}</a>
-    <p class="preview">{{note.content}}</p>
-   </li>
-</ul>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#/notes"># SuperMarkIt</a>
+    </div>
+    <div id="navbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#/notes">Notes</a></li>
+        <li><a href="#/note">New Note</a></li>
+        <li><a href="#">Profile</a></li>
+        <li><a href="#/">Log out</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid" role="main">
+  <div class="row">
+    <ul id="notes">
+      <li class="note col-md-4" ng-repeat="note in notesCtrl.notes | orderBy:'created_at':true">
+        <div class="title">
+          <a href="#/note" ng-click='notesCtrl.setCurrent(note)'>{{note.title}}</a>
+        </div>
+        <div class="content">
+          <p>{{note.content}}</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
