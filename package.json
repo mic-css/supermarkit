@@ -13,7 +13,7 @@
     "test-protractor": "npm run update-webdriver && protractor test/protractor.conf.js",
     "test-karma": "grunt karma",
     "test-mocha": "mocha 'test/server/**/*Spec.js'",
-    "update-webdriver": "webdriver-manager update --standalone",
+    "update-webdriver": "webdriver-manager update --standalone"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
