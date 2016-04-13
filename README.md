@@ -12,21 +12,23 @@ We built this MEAN stack app as our final project at [Makers Academy](makersacad
 * level-up our agile skills using TDD, pair-programming, GitHub + Waffle.io and regular stand-ups and retros
 * build something beautiful
 
+![Landing Page](/screenshots/Screen Shot 2016-04-13 at 15.57.17.png)
+
 ## Technologies
 
-### Core
+#### Core
 * Node.js
 * Express.js
 * AngularJS
 * MongoDB
 * Sass
 
-### Testing Frameworks
+#### Testing Frameworks
 * Karma
 * Mocha + Chai
 * Protractor
 
-### Third-party ❤
+#### Third-party ❤
 * [Marked](https://github.com/chjj/marked), an lighting-fast markdown parser and compiler
 * [Ace](https://ace.c9.io/#nav=about), Cloud9's very own online editor
 
@@ -47,7 +49,7 @@ $ git clone https://github.com/mic-css/supermarkit.git
 $ cd supermarkit
 ```
 
-### Build
+#### Build
 
 Install or update any dependencies: (this may take a minute or two)
 * `npm install`
@@ -59,12 +61,12 @@ To run test commands, you will need to globally install grunt-cli and nodemon if
 For front-end changes:
 * `grunt sass`
 
-### Run
+#### Run
 
 * `npm install -g node-mongo-seeds` install node-mongo-seeds to seed the database
 * `npm run start-dev` and navigate to [localhost:3000](http://localhost:3000/)
 
-### Test
+#### Test
 
 Front-end unit tests:
 * `npm run test-karma`
