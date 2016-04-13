@@ -6,7 +6,7 @@ Welcome to the markdown revolution: SuperMarkIt is a lightweight online notepad 
 
 ## Objectives
 
-We built this MEAN stack app as our final project at [Makers Academy](makersacademy.com) to combine the awesome power of Evernote and OneNote with the simplicity of writing apps like iA Writer and Day One. Our objectives were to:
+We built this MEAN stack app as our final project at [Makers Academy](www.makersacademy.com) to combine the awesome power of Evernote and OneNote with the simplicity of writing apps like iA Writer and Day One. Our objectives were to:
 * build a functioning web app from scratch
 * explore the mean, lean power of Mongo, Express.js, AngularJS and Node.js
 * level-up our agile skills using TDD, pair-programming, GitHub + Waffle.io and regular stand-ups and retros
