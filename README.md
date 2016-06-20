@@ -39,7 +39,7 @@ Built by Markdown Squad:
 * [Matt Bridges](https://github.com/Itsindigo)
 * [Constantin Kalinin](https://github.com/tishayaem)
 * [Jeremy Barrass](https://github.com/Jeremy-Barrass)
-* [Chris Parker](https://github.com/2blastoff)
+* [Chris Terry](https://github.com/2blastoff)
 
 ## Instructions
 
