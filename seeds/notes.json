@@ -1,6 +1,6 @@
 [
   {
     "title": "Welcome to Markpad",
-    "content": "Here's a quick introduction to markdown"
+    "content": "Here's a quick introduction to [markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)."
   }
 ]
