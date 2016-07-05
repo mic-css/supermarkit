@@ -5812,6 +5812,8 @@ button.close {
 html, body {
   width: 100%;
   height: 100%; }
+  html a, body a {
+    color: white; }
 
 #jumbo {
   position: relative;
