@@ -87,3 +87,15 @@ $ npm run start-test
 $ npm run test-protractor
 ```
 To run the entire suite, ensure you have `webdriver-manager` and the `test` server running in the background as above, and run `npm run test-everything`
+
+## Improvements
+
+Future iterations will focus on the following:
+* Fix user sign-in / sign-up
+* Display note information (e.g. geolocation, date created, etc.)
+* Feature: delete notes
+* Feature: search for notes
+* Feature: tag notes
+* Feature: organise notes in notebooks
+* Deploy to Heroku
+* Improve responsiveness
