@@ -99,3 +99,4 @@ Future iterations will focus on the following:
 * Feature: organise notes in notebooks
 * Deploy to Heroku
 * Improve responsiveness
+* Refactor!
